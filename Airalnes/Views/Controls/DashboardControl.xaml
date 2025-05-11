@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="Airalnes.Views.Controls.DashboardControl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Airalnes"
+        mc:Ignorable="d"
+        Height="450" Width="800" Background="{x:Null}">
+    <Grid>
+        <materialDesign:Card UniformCornerRadius="0" >
+            <Grid  Background="#100E17" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="10*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.Resources>
+                    <Style TargetType="materialDesign:PackIcon">
+                        <Setter Property="Width" Value="30"/>
+                        <Setter Property="Height" Value="30"/>
+                    </Style>
+                </Grid.Resources>
+                <Grid Grid.Column="0">
+                    <Grid.Background>
+                        <LinearGradientBrush StartPoint="0.1,0.1" EndPoint="0.9,1">
+                            <GradientStop Color="#a300f5" Offset="0"/>
+                            <GradientStop Color="#ea1cfc" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <ListView Margin="0 15">
+                        <ListViewItem HorizontalAlignment="Center" Margin="0 15">
+                            <Grid>
+                                <Button x:Name="UserButton" Style="{StaticResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left"
+                                    BorderBrush="{x:Null}" Foreground="White" Background="{x:Null}" Click="UserButton_Click">
+                                    <StackPanel Margin="-5">
+                                        <materialDesign:PackIcon Kind="AccountCircle"/>
+                                    </StackPanel>
+                                </Button>
+
+                                <Popup x:Name="UserPopup" Placement="Right" PlacementTarget="{Binding ElementName=UserButton}" 
+                                   StaysOpen="False" AllowsTransparency="True" PopupAnimation="Slide" HorizontalOffset="10">
+                                    <Border Background="#100E17" CornerRadius="8" Padding="10" Effect="{DynamicResource MaterialDesignShadowDepth2}">
+                                        <StackPanel>
+                                            <Button Style="{StaticResource MaterialDesignFlatButton}" Click="Logout_Click">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="🚪" Margin="0 0 5 0" Foreground="White"/>
+                                                    <TextBlock Text="Log out" Foreground="White"/>
+                                                </StackPanel>
+                                            </Button>
+                                        </StackPanel>
+                                    </Border>
+                                </Popup>
+                            </Grid>
+                        </ListViewItem>
+                        <ListViewItem HorizontalAlignment="Center" Margin="0 0">
+                            <Button Style="{StaticResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" BorderBrush="{x:Null}"
+                                 Foreground="White" Background="{x:Null}" x:Name="Airplane" Click="Airplane_Click">
+                                <StackPanel Margin="-5">
+                                    <materialDesign:PackIcon Kind="AirplaneMarker"></materialDesign:PackIcon>
+                                </StackPanel>
+                            </Button>
+                        </ListViewItem>
+                        <ListViewItem HorizontalAlignment="Center" Margin="0 10">
+                            <Button Style="{StaticResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" BorderBrush="{x:Null}"
+                                Foreground="White" Background="{x:Null}" x:Name="History" Click="HistoryButton_Click">
+                                <StackPanel Margin="-5">
+                                    <materialDesign:PackIcon Kind="Calendar"></materialDesign:PackIcon>
+                                </StackPanel>
+                            </Button>
+                        </ListViewItem>
+                        <ListViewItem HorizontalAlignment="Center" Margin="0">
+                            <Button Style="{StaticResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" BorderBrush="{x:Null}"
+                                Foreground="White" Background="{x:Null}">
+                                <StackPanel Margin="-5">
+                                    <materialDesign:PackIcon Kind="Cog"></materialDesign:PackIcon>
+                                </StackPanel>
+                            </Button>
+                        </ListViewItem>
+                    </ListView>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <StackPanel Margin="650 0 0 0">
+                        <Button  Margin="12 12 10 0" Height="30" Width="30" Style="{StaticResource MaterialDesignFloatingActionButton}" ToolTip="Close" Background="{x:Null}" 
+                            x:Name="ButtonExit" Click="ButtonExit_Click" >
+                            <materialDesign:PackIcon Kind="Close" Foreground="White" Height="20" Width="20"/>
+                        </Button>
+                    </StackPanel>
+                    <Image Source="pack://application:,,,/Resources/Images/Airport.png" Width="500" Height="300" Margin="30" VerticalAlignment="Center" Stretch="Fill"/>
+                </Grid>
+                
+
+            </Grid>
+        </materialDesign:Card>
+
+    </Grid>
+</UserControl>
