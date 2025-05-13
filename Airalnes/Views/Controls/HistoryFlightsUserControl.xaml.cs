@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using Airalnes.Views;
 using Airalnes.Views.Controls;
 using Airalnes.Helpers;
+using Airalnes.Models;
 
 namespace Airalnes.Views.Controls
 {
@@ -25,11 +26,11 @@ namespace Airalnes.Views.Controls
     public partial class HistoryFlightsUserControl : UserControl
     {
         private DatabaseHelper dbHelper = new DatabaseHelper();
-
+        
         public HistoryFlightsUserControl()
         {
             InitializeComponent();
-            LoadAllFlights();
+            LoadAllFlights();          
         }
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
         {
@@ -53,13 +54,13 @@ namespace Airalnes.Views.Controls
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                string userRights = mainWindow.CurrentUserRights;
+                var currentUser = mainWindow?.CurrentUser;
 
-                if (userRights == "Worker")
+                if (currentUser.Role == "Worker")
                 {
                     mainWindow.MainContent.Content = new AirplaneManagementControl();
                 }
-                else if (userRights == "User")
+                else if (currentUser.Role == "User")
                 {
                     mainWindow.MainContent.Content = new AirplaneUsersControl();
                 }

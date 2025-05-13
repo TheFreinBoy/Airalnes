@@ -7,7 +7,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0A2E6F73-1C35-4B32-A824-67DFB4170CF8}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>Airalnes</RootNamespace>
     <AssemblyName>Airalnes</AssemblyName>
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
@@ -156,6 +156,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\Airplane.cs" />
+    <Compile Include="Models\BookingContext.cs" />
+    <Compile Include="Services\BookingService.cs" />
     <Compile Include="Views\Controls\AirplaneManagementControl.xaml.cs">
       <DependentUpon>AirplaneManagementControl.xaml</DependentUpon>
     </Compile>

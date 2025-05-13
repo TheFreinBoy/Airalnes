@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Airalnes.Models;
+using Airalnes.Views;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +15,7 @@ namespace Airalnes
     /// </summary>
     public partial class App : Application
     {
+        
     }
+
 }

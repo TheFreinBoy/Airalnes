@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Airalnes.Models;
 using Airalnes.Views.Controls;
 
 namespace Airalnes.Views
@@ -21,12 +22,13 @@ namespace Airalnes.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        public string CurrentUserRights { get; set; }
+        public User CurrentUser { get; set; }     
 
         public MainWindow()
         {
             InitializeComponent();
             MainContent.Content = new LoginControl();
+
         }
 
         private void Border_MouseDown(object sender, MouseEventArgs e)

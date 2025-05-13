@@ -29,11 +29,33 @@ namespace Airalnes.Views.Controls
     public partial class AirplaneManagementControl : UserControl
     {
         private readonly AirplaneService airplaneService = new AirplaneService();
+        private readonly FlightService _flightService = new FlightService();
         public AirplaneManagementControl()
         {
             InitializeComponent();
             LoadAirplanes();
             LoadAirports();
+            var nextFlightNumber = _flightService.GetNextAvailableFlightNumber();
+
+            FlightNumberTextBox.Text = nextFlightNumber.ToString();
+        }
+        
+        private void AirplaneManagementControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadNextFlightNumber();
+        }
+
+        private void LoadNextFlightNumber()
+        {
+            try
+            {
+                int nextNumber = _flightService.GetNextAvailableFlightNumber();
+                FlightNumberTextBox.Text = nextNumber.ToString();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error loading flight number: " + ex.Message);
+            }
         }
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
         {
@@ -78,13 +100,13 @@ namespace Airalnes.Views.Controls
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                string userRights = mainWindow.CurrentUserRights;
+                var currentUser = mainWindow?.CurrentUser;
 
-                if (userRights == "Worker")
+                if (currentUser.Role == "Worker")
                 {
                     mainWindow.MainContent.Content = new HistoryFlightsUserControl();
                 }
-                else if (userRights == "User")
+                else if (currentUser.Role == "User")
                 {
                     mainWindow.MainContent.Content = new AirplaneUsersControl();
                 }

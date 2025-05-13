@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              xmlns:local="clr-namespace:Airalnes"
-             mc:Ignorable="d" 
+             mc:Ignorable="d" Loaded="AirplaneManagementControl_Loaded"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
 
@@ -116,7 +116,7 @@
 
                                     <ComboBox x:Name="FromTextBox" Height="30" Width="120" Margin="7 0 10 0" FontSize="14" materialDesign:TextFieldAssist.UnderlineBrush="Transparent" 
                                               SelectedValuePath="Id" MaxDropDownHeight="150"/>
-                                    <materialDesign:PackIcon Kind="MapMarker" Margin="95 -24 0 0"></materialDesign:PackIcon>
+                                    <materialDesign:PackIcon Kind="MapMarker" Margin="110 -24 0 0"></materialDesign:PackIcon>
                                 </StackPanel>
 
                             </Border>
@@ -125,7 +125,7 @@
                                     <TextBlock Text="To" HorizontalAlignment="left" Margin="10 5 0 0"/>
                                     <ComboBox x:Name="ToTextBox" Height="30" Width="120" Foreground="Black" FontSize="14" Margin="7 0 10 0" materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
                                               SelectedValuePath="Id" MaxDropDownHeight="150"/>
-                                    <materialDesign:PackIcon Kind="MapMarkerRadius" Margin="95 -24 0 0"></materialDesign:PackIcon>
+                                    <materialDesign:PackIcon Kind="MapMarkerRadius" Margin="110 -24 0 0"></materialDesign:PackIcon>
                                 </StackPanel>
                             </Border>
                             <Border CornerRadius="10" Margin="5 0 0 0" Width="130" Background="White">
@@ -178,10 +178,10 @@
                         <StackPanel  Width="120" >
 
                             <TextBlock Text="Airplane" HorizontalAlignment="left" Margin="10 5 0 0" />
-                            <ComboBox x:Name="AirplaneComboBox" Height="30" Width="110" Margin="10 0 10 0"
+                            <ComboBox x:Name="AirplaneComboBox" Height="30" Width="120" Margin="5 0 10 0"
                                       FontSize="14" DisplayMemberPath="Name"
                                       materialDesign:TextFieldAssist.UnderlineBrush="Transparent" />
-                            <materialDesign:PackIcon Kind="Airplane" Margin="95 -24 0 0"></materialDesign:PackIcon>
+                            <materialDesign:PackIcon Kind="Airplane" Margin="105 -24 0 0"></materialDesign:PackIcon>
                         </StackPanel>
 
                     </Border>
@@ -189,8 +189,8 @@
                         <StackPanel  Width="130" >
                             <TextBlock Text="Flight №" HorizontalAlignment="left" Margin="10 5 0 0" />
                             <TextBox  Height="30" Width="110" Margin="10 0 10 0" FontSize="14" materialDesign:TextFieldAssist.UnderlineBrush="Transparent" 
-                                      x:Name="FlightNumberTextBox"/>
-                            <materialDesign:PackIcon Kind="Counter" Margin="95 -24 0 0"></materialDesign:PackIcon>
+                                      x:Name="FlightNumberTextBox" IsReadOnly="True" />
+                            <materialDesign:PackIcon Kind="Counter" Margin="110 -24 0 0"></materialDesign:PackIcon>
                         </StackPanel>
                     </Border>
                     <Border Background="White" CornerRadius="10" Height="56" Width="130" HorizontalAlignment="Left" Margin="305 60 0 0">

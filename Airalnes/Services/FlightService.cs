@@ -10,13 +10,9 @@ namespace Airalnes.Services
 {
     public class FlightService
     {
-        private readonly DatabaseHelper _dbHelper;
+        private static readonly DatabaseHelper _dbHelper = new DatabaseHelper();
 
-        public FlightService()
-        {
-            _dbHelper = new DatabaseHelper();
-        }
-
+       
         public void CreateFlight(FlightFormData data)
         {
             _dbHelper.CreateFlight(
@@ -35,6 +31,10 @@ namespace Airalnes.Services
         public List<Flight> SearchFlights(string from, string to, string departure, string arrival, string flightClass, int passengers)
         {
             return _dbHelper.SearchFlights(from, to, departure, arrival, flightClass, passengers);
+        }
+        public int GetNextAvailableFlightNumber()
+        {
+            return _dbHelper.GetNextAvailableFlightNumber();
         }
     }
 }

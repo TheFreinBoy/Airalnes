@@ -43,21 +43,33 @@ namespace Airalnes.Services
                 }
             }
         }
-        public string AuthenticateUser(string username, string password)
+        public User AuthenticateUser(string username, string password)
         {
             using (var conn = _dbHelper.GetConnection())
             {
                 conn.Open();
-                string query = "SELECT rights FROM users WHERE name = @Username AND pass = @Password";
+                string query = "SELECT id, name, rights FROM users WHERE name = @Username AND pass = @Password";
                 using (var cmd = new SQLiteCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@Username", username);
                     cmd.Parameters.AddWithValue("@Password", password);
 
-                    var result = cmd.ExecuteScalar();
-                    return result?.ToString();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new User
+                            {
+                                Id = reader.GetInt32(0),
+                                Username = reader.GetString(1),
+                                Role = reader.GetString(2)
+                            };
+                        }
+                    }
                 }
             }
+
+            return null;
         }
     }
 }

@@ -68,7 +68,7 @@ namespace Airalnes.Helpers
                     return_date TEXT,
                     class TEXT NOT NULL,
                     airplane_id INTEGER NOT NULL,
-                    flight_number TEXT NOT NULL,
+                    flight_number TEXT UNIQUE,
                     capacity INTEGER NOT NULL,
                     time_DP TEXT NOT NULL,
                     time_AR TEXT NOT NULL,
@@ -122,10 +122,22 @@ namespace Airalnes.Helpers
                             ('Frankfurt am Main Airport', 'Frankfurt', 'Germany', 'FRA'),
                             ('Tokyo Haneda Airport', 'Tokyo', 'Japan', 'HND');
                         ";
-                        ExecuteQuery(insertAirports, connection);
-                        Console.WriteLine("Додано 10 аеропортів до таблиці Airports.");
+                        ExecuteQuery(insertAirports, connection);                      
                     }
                 }
+                string createBookingsTable = @"
+                CREATE TABLE IF NOT EXISTS Bookings (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    user_id INTEGER NOT NULL,
+                    flight_id INTEGER,
+                    booking_date INTEGER NOT NULL,
+                    name TEXT,
+                    surname TEXT,
+                    date_of_birth TEXT,
+                    FOREIGN KEY(user_id) REFERENCES Users(id),
+                    FOREIGN KEY(flight_id) REFERENCES Flights(id)
+                );";
+                ExecuteQuery(createBookingsTable, connection);
             }
             catch (Exception ex)
             {
@@ -310,7 +322,69 @@ namespace Airalnes.Helpers
                 return date.ToString("dd.MM.yyyy");
             }
             return isoDateStr;
+        }      
+        public List<Flight> GetUserBookedFlights(int userId)
+        {
+            var flights = new List<Flight>();
+
+            using (var connection = new SQLiteConnection(_connectionString))
+            {
+                connection.Open();
+                string query = @"
+            SELECT f.id, f.from_location, f.to_location, f.departure, f.return_date,
+                   f.class, a.name AS airplane_name, f.flight_number,
+                   f.capacity, f.time_DP, f.time_AR
+            FROM Bookings b
+            JOIN Flights f ON b.flight_id = f.id
+            JOIN Airplanes a ON f.airplane_id = a.id
+            WHERE b.user_id = @userId;";
+
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@userId", userId);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            flights.Add(new Flight
+                            {
+                                Id = reader.GetInt32(0),
+                                FromLocation = reader.GetString(1),
+                                ToLocation = reader.GetString(2),
+                                Departure = reader.GetString(3),
+                                ReturnDate = reader.IsDBNull(4) ? null : reader.GetString(4),
+                                Class = reader.GetString(5),
+                                AirplaneName = reader.GetString(6),
+                                FlightNumber = reader.GetString(7),
+                                Capacity = reader.GetInt32(8),
+                                TimeDP = reader.GetString(9),
+                                TimeAR = reader.GetString(10)
+                            });
+                        }
+                    }
+                }
+            }
+
+            return flights;
         }
+        public int GetNextAvailableFlightNumber()
+        {
+            using (var connection = new SQLiteConnection(_connectionString))
+            {
+                connection.Open();
+                var command = new SQLiteCommand("SELECT MAX(flight_number) FROM Flights", connection);
+                var result = command.ExecuteScalar();
+                if (result != DBNull.Value && int.TryParse(result.ToString(), out int lastNumber))
+                {
+                    return lastNumber + 1;
+                }
+                else
+                {
+                    return 1; 
+                }
+            }
+        }
+
 
         public SQLiteConnection GetConnection()
         {

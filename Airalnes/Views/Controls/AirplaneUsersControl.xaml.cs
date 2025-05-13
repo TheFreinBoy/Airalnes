@@ -19,6 +19,7 @@ using Airalnes.Views.Controls;
 using Airalnes.Models;
 using Airalnes.Helpers;
 using Airalnes.Services;
+using System.Runtime.Remoting.Contexts;
 
 namespace Airalnes.Views.Controls
 {
@@ -29,11 +30,14 @@ namespace Airalnes.Views.Controls
     {
         private readonly AirplaneService airplaneService = new AirplaneService();
         private readonly FlightService flightService = new FlightService();
+        private BookingContext _context;
         public AirplaneUsersControl()
         {
             InitializeComponent();
             LoadAirports();
+            _context = new BookingContext();
         }
+        
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
@@ -95,19 +99,25 @@ namespace Airalnes.Views.Controls
             
         }
         private void BookFlight_Click(object sender, RoutedEventArgs e)
-        {                    
-            var selectedFlight = FlightsDataGrid.SelectedItem as Flight; 
+        {           
+            var selectedFlight = FlightsDataGrid.SelectedItem as Flight;           
             if (selectedFlight == null)
             {
                 BookError.Visibility = Visibility.Visible;
                 return;
             }
+            if (_context == null)
+            {            
+                MessageBox.Show("Контекст не ініцільований!");
+                return;
+            }
             BookError.Visibility = Visibility.Collapsed;
+            _context.SelectedFlight = selectedFlight;
 
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.MainContent.Content = new BookingFlightUserControl();
+                mainWindow.MainContent.Content = new BookingFlightUserControl(_context);
             }
         }
 

@@ -6,6 +6,7 @@ using System.Windows.Media;
 using Airalnes.Views;
 using Airalnes.Views.Controls;
 using Airalnes.Services;
+using Airalnes.Models;
 
 namespace Airalnes.Views.Controls
 {
@@ -15,10 +16,10 @@ namespace Airalnes.Views.Controls
     public partial class LoginControl : UserControl
     {
         private readonly UserService _userService = new UserService();
-
+        
         public LoginControl()
         {
-            InitializeComponent();
+            InitializeComponent();        
         }
 
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
@@ -50,13 +51,13 @@ namespace Airalnes.Views.Controls
                 return;
             }
 
-            BlankError.Visibility = Visibility.Collapsed;          
-            string role = _userService.AuthenticateUser(username, password);
+            BlankError.Visibility = Visibility.Collapsed;
+            User user = _userService.AuthenticateUser(username, password);
 
-            if (role != null)
+            if (user != null)
             {
                 var mainWindow = Application.Current.MainWindow as MainWindow;
-                mainWindow.CurrentUserRights = role;
+                mainWindow.CurrentUser = user;
                 mainWindow.MainContent.Content = new DashboardControl();
                 InvalidError.Visibility = Visibility.Collapsed;
             }

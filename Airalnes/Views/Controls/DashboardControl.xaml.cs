@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Airalnes.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,8 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Airalnes.Views;
-using Airalnes.Views.Controls;
+
 
 namespace Airalnes.Views.Controls
 {
@@ -48,13 +48,13 @@ namespace Airalnes.Views.Controls
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                string userRights = mainWindow.CurrentUserRights;
+                var currentUser = mainWindow?.CurrentUser;
 
-                if (userRights == "Worker")
+                if (currentUser.Role == "Worker")
                 {
                     mainWindow.MainContent.Content = new AirplaneManagementControl();
                 }
-                else if (userRights == "User")
+                else if (currentUser.Role == "User")
                 {
                     mainWindow.MainContent.Content = new AirplaneUsersControl();
                 }
@@ -65,13 +65,13 @@ namespace Airalnes.Views.Controls
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                string userRights = mainWindow.CurrentUserRights;
+                var currentUser = mainWindow?.CurrentUser;
 
-                if (userRights == "Worker")
+                if (currentUser.Role == "Worker")
                 {
                     mainWindow.MainContent.Content = new HistoryFlightsUserControl();
                 }
-                else if (userRights == "User")
+                else if (currentUser.Role == "User")
                 {
                     mainWindow.MainContent.Content = new AirplaneUsersControl();
                 }
