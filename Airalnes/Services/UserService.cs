@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Airalnes.Models;
 using Airalnes.Helpers;
+using Airalnes.Interfaces;
 
 namespace Airalnes.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
         private readonly DatabaseHelper _dbHelper = new DatabaseHelper();
 

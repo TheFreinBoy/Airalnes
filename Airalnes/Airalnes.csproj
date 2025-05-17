@@ -155,9 +155,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Interfaces\IAirplaneService.cs" />
+    <Compile Include="Interfaces\IBookingService.cs" />
+    <Compile Include="Interfaces\IFlightService.cs" />
+    <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Models\Airplane.cs" />
     <Compile Include="Models\BookingContext.cs" />
     <Compile Include="Services\BookingService.cs" />
+    <Compile Include="Validators\LoginValidator.cs" />
+    <Compile Include="Validators\RegistrationValidator.cs" />
     <Compile Include="Views\Controls\AirplaneManagementControl.xaml.cs">
       <DependentUpon>AirplaneManagementControl.xaml</DependentUpon>
     </Compile>
@@ -174,7 +180,6 @@
     </Compile>
     <Compile Include="Helpers\DatabaseHelper.cs" />
     <Compile Include="Models\Flight.cs" />
-    <Compile Include="Models\FlightFormData.cs" />
     <Compile Include="Services\FlightService.cs" />
     <Compile Include="Views\Controls\HistoryFlightsUserControl.xaml.cs">
       <DependentUpon>HistoryFlightsUserControl.xaml</DependentUpon>

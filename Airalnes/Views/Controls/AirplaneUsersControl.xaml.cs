@@ -20,6 +20,7 @@ using Airalnes.Models;
 using Airalnes.Helpers;
 using Airalnes.Services;
 using System.Runtime.Remoting.Contexts;
+using Airalnes.Interfaces;
 
 namespace Airalnes.Views.Controls
 {
@@ -28,14 +29,16 @@ namespace Airalnes.Views.Controls
     /// </summary>
     public partial class AirplaneUsersControl : UserControl
     {
-        private readonly AirplaneService airplaneService = new AirplaneService();
-        private readonly FlightService flightService = new FlightService();
+        private readonly IAirplaneService airplaneService = new AirplaneService();
+        private readonly IFlightService flightService = new FlightService();
+        private readonly IUserService _userService;
         private BookingContext _context;
-        public AirplaneUsersControl()
+        public AirplaneUsersControl(IUserService userService)
         {
             InitializeComponent();
             LoadAirports();
             _context = new BookingContext();
+            _userService = userService;
         }
         
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
@@ -51,7 +54,7 @@ namespace Airalnes.Views.Controls
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.MainContent.Content = new LoginControl();
+                mainWindow.MainContent.Content = new LoginControl(_userService);
             }
 
         }
@@ -60,7 +63,7 @@ namespace Airalnes.Views.Controls
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.MainContent.Content = new DashboardControl();
+                mainWindow.MainContent.Content = new DashboardControl(_userService);
             }
         }
         private void LoadAirports()
@@ -117,7 +120,7 @@ namespace Airalnes.Views.Controls
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.MainContent.Content = new BookingFlightUserControl(_context);
+                mainWindow.MainContent.Content = new BookingFlightUserControl(_context, _userService);
             }
         }
 

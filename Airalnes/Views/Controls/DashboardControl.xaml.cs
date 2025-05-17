@@ -1,4 +1,5 @@
-﻿using Airalnes.Models;
+﻿using Airalnes.Interfaces;
+using Airalnes.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +23,11 @@ namespace Airalnes.Views.Controls
     /// </summary>
     public partial class DashboardControl : UserControl
     {
-        public DashboardControl()
+        private readonly IUserService _userService;
+        public DashboardControl(IUserService userService)
         {
             InitializeComponent();
+            _userService = userService;
         }
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
         {
@@ -39,7 +42,7 @@ namespace Airalnes.Views.Controls
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.MainContent.Content = new LoginControl();
+                mainWindow.MainContent.Content = new LoginControl(_userService);
             }
 
         }
@@ -52,11 +55,11 @@ namespace Airalnes.Views.Controls
 
                 if (currentUser.Role == "Worker")
                 {
-                    mainWindow.MainContent.Content = new AirplaneManagementControl();
+                    mainWindow.MainContent.Content = new AirplaneManagementControl(_userService);
                 }
                 else if (currentUser.Role == "User")
                 {
-                    mainWindow.MainContent.Content = new AirplaneUsersControl();
+                    mainWindow.MainContent.Content = new AirplaneUsersControl(_userService);
                 }
             }
         }
@@ -69,11 +72,11 @@ namespace Airalnes.Views.Controls
 
                 if (currentUser.Role == "Worker")
                 {
-                    mainWindow.MainContent.Content = new HistoryFlightsUserControl();
+                    mainWindow.MainContent.Content = new HistoryFlightsUserControl(_userService);
                 }
                 else if (currentUser.Role == "User")
                 {
-                    mainWindow.MainContent.Content = new AirplaneUsersControl();
+                    mainWindow.MainContent.Content = new AirplaneUsersControl(_userService);
                 }
             }
         }

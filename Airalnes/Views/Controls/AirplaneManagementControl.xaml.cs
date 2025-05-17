@@ -20,6 +20,7 @@ using Airalnes.Views;
 using Airalnes.Views.Controls;
 using Airalnes.Models;
 using Airalnes.Services;
+using Airalnes.Interfaces;
 
 namespace Airalnes.Views.Controls
 {
@@ -28,15 +29,16 @@ namespace Airalnes.Views.Controls
     /// </summary>
     public partial class AirplaneManagementControl : UserControl
     {
-        private readonly AirplaneService airplaneService = new AirplaneService();
-        private readonly FlightService _flightService = new FlightService();
-        public AirplaneManagementControl()
+        private readonly IAirplaneService airplaneService = new AirplaneService();
+        private readonly IFlightService _flightService = new FlightService();
+        private readonly IUserService _userService;
+        public AirplaneManagementControl(IUserService userService)
         {
             InitializeComponent();
             LoadAirplanes();
             LoadAirports();
             var nextFlightNumber = _flightService.GetNextAvailableFlightNumber();
-
+            _userService = userService;
             FlightNumberTextBox.Text = nextFlightNumber.ToString();
         }
         
@@ -70,7 +72,7 @@ namespace Airalnes.Views.Controls
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.MainContent.Content = new LoginControl();
+                mainWindow.MainContent.Content = new LoginControl(_userService);
             }
 
         }
@@ -79,7 +81,7 @@ namespace Airalnes.Views.Controls
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.MainContent.Content = new DashboardControl();
+                mainWindow.MainContent.Content = new DashboardControl(_userService);
             }
 
         }
@@ -104,11 +106,11 @@ namespace Airalnes.Views.Controls
 
                 if (currentUser.Role == "Worker")
                 {
-                    mainWindow.MainContent.Content = new HistoryFlightsUserControl();
+                    mainWindow.MainContent.Content = new HistoryFlightsUserControl(_userService);
                 }
                 else if (currentUser.Role == "User")
                 {
-                    mainWindow.MainContent.Content = new AirplaneUsersControl();
+                    mainWindow.MainContent.Content = new AirplaneUsersControl(_userService);
                 }
             }
         }
@@ -135,18 +137,18 @@ namespace Airalnes.Views.Controls
             }
             GlobalError.Visibility = Visibility.Collapsed;
 
-            var formData = new FlightFormData
+            var formData = new Flight
             {
-                From = fromAirport.IATACode,
-                To = toAirport.IATACode,
-                DepartureDate = DepartureTextBox.Text,
-                ArrivalDate = ArrivalTextBox.Text,
-                FlightClass = ClassComboBox.Text,
+                FromLocation = fromAirport.IATACode,
+                ToLocation = toAirport.IATACode,
+                Departure = DepartureTextBox.Text,
+                ReturnDate = ArrivalTextBox.Text,
+                Class = ClassComboBox.Text,
                 AirplaneId = selectedAirplane.Id,
                 Capacity = selectedAirplane.Capacity,
                 FlightNumber = FlightNumberTextBox.Text,
-                DepartureTime = DepartureTimePicker.Text,
-                ArrivalTime = ArrivalTimePicker.Text
+                TimeDP = DepartureTimePicker.Text,
+                TimeAR = ArrivalTimePicker.Text
             };
 
             var service = new FlightService();

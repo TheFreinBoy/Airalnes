@@ -15,6 +15,7 @@ namespace Airalnes.Models
         public string ReturnDate { get; set; }
         public string Class { get; set; }
         public string AirplaneName { get; set; }
+        public int AirplaneId { get; set; }
         public string FlightNumber { get; set; }
         public int Capacity { get; set; }
         public string TimeDP { get; set; }

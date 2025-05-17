@@ -4,10 +4,11 @@ using System.Data.SQLite;
 using Airalnes.Models;
 using Airalnes.Helpers;
 using System.Windows;
+using Airalnes.Interfaces;
 
 namespace Airalnes.Services
 {
-    public class BookingService
+    public class BookingService : IBookingService
     {
         private DatabaseHelper dbHelper = new DatabaseHelper();
 

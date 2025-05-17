@@ -44,14 +44,14 @@
                                  x:Name="EmailTextBox"/>
 
                     </StackPanel>
-                    <TextBlock x:Name="EmailError" Foreground="Red" Margin="45 0 0 0" Visibility="Collapsed" Text=" The email you have provided is already busy."/>
+                    <TextBlock x:Name="EmailError" Foreground="Red" Margin="45 0 0 0" Visibility="Collapsed"/>
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <materialDesign:PackIcon  Kind="User" Width="25" Height="25" Foreground="White" />
                         <TextBox Margin="10 0" materialDesign:HintAssist.Hint="Usarname" Width="250" Background="#100E17" Foreground="White" BorderBrush="White"
                                  x:Name="UsernameTextBox"/>
 
                     </StackPanel>
-                    <TextBlock x:Name="UsernameError" Foreground="Red" Margin="45 0 0 0" Visibility="Collapsed" Text="The username you have provided is already busy."/>
+                    <TextBlock x:Name="UsernameError" Foreground="Red" Margin="45 0 0 0" Visibility="Collapsed"/>
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <materialDesign:PackIcon  Kind="Password" Width="25" Height="25" Foreground="White" />
                         <PasswordBox Margin="10 0" materialDesign:HintAssist.Hint="Enter password" Width="250" Background="#100E17" Foreground="White" BorderBrush="White"
@@ -72,8 +72,8 @@
                         </ComboBox>
                         
                     </StackPanel>
-                    <StackPanel Margin="-4" Visibility="Collapsed" x:Name="GlobalError" Height="15" >
-                        <TextBlock  Text="Fields cannot be blank" 
+                    <StackPanel Margin="-4"  Height="15" >
+                        <TextBlock Visibility="Collapsed" x:Name="GlobalError"
                                    Foreground="Red" TextAlignment="Center" Margin="0 0 0 10" />
                     </StackPanel>
                     <StackPanel Margin="-4" Visibility="Collapsed" x:Name="RegistrationError" Height="15" >

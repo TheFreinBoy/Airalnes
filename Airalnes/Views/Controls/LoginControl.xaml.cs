@@ -7,6 +7,8 @@ using Airalnes.Views;
 using Airalnes.Views.Controls;
 using Airalnes.Services;
 using Airalnes.Models;
+using Airalnes.Interfaces;
+using Airalnes.Validators;
 
 namespace Airalnes.Views.Controls
 {
@@ -15,11 +17,14 @@ namespace Airalnes.Views.Controls
     /// </summary>
     public partial class LoginControl : UserControl
     {
-        private readonly UserService _userService = new UserService();
-        
-        public LoginControl()
+        private readonly IUserService _userService;
+        private readonly LoginValidator _loginValidator;
+
+        public LoginControl(IUserService userService)
         {
-            InitializeComponent();        
+            InitializeComponent();
+            _userService = userService;
+            _loginValidator = new LoginValidator(userService);
         }
 
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
@@ -32,7 +37,7 @@ namespace Airalnes.Views.Controls
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.MainContent.Content = new RegistrationControl();
+                mainWindow.MainContent.Content = new RegistrationControl(_userService);
             }
         }
 
@@ -44,27 +49,27 @@ namespace Airalnes.Views.Controls
             UsernameTextBox.BorderBrush = string.IsNullOrEmpty(username) ? Brushes.Red : Brushes.White;
             PasswordBox.BorderBrush = string.IsNullOrEmpty(password) ? Brushes.Red : Brushes.White;
 
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            var result = _loginValidator.Validate(username, password);
+
+            if (!result.IsValid)
             {
-                BlankError.Visibility = Visibility.Visible;
-                InvalidError.Visibility = Visibility.Collapsed;
+                BlankError.Visibility = string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password)
+                    ? Visibility.Visible : Visibility.Collapsed;
+
+                InvalidError.Visibility = !string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password)
+                    ? Visibility.Visible : Visibility.Collapsed;
+
                 return;
             }
 
             BlankError.Visibility = Visibility.Collapsed;
-            User user = _userService.AuthenticateUser(username, password);
+            InvalidError.Visibility = Visibility.Collapsed;
 
-            if (user != null)
+            var mainWindow = Application.Current.MainWindow as MainWindow;
+            if (mainWindow != null)
             {
-                var mainWindow = Application.Current.MainWindow as MainWindow;
-                mainWindow.CurrentUser = user;
-                mainWindow.MainContent.Content = new DashboardControl();
-                InvalidError.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                BlankError.Visibility = Visibility.Collapsed;
-                InvalidError.Visibility = Visibility.Visible;
+                mainWindow.CurrentUser = result.AuthenticatedUser;
+                mainWindow.MainContent.Content = new DashboardControl(_userService);
             }
         }
     }

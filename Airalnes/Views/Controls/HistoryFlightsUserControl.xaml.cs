@@ -17,6 +17,8 @@ using Airalnes.Views;
 using Airalnes.Views.Controls;
 using Airalnes.Helpers;
 using Airalnes.Models;
+using Airalnes.Interfaces;
+using Airalnes.Services;
 
 namespace Airalnes.Views.Controls
 {
@@ -25,11 +27,14 @@ namespace Airalnes.Views.Controls
     /// </summary>
     public partial class HistoryFlightsUserControl : UserControl
     {
-        private DatabaseHelper dbHelper = new DatabaseHelper();
-        
-        public HistoryFlightsUserControl()
+        private readonly IFlightService _flightService;
+        private readonly IUserService _userService;
+
+        public HistoryFlightsUserControl(IUserService userService)
         {
             InitializeComponent();
+            _flightService = new FlightService();
+            _userService = userService;
             LoadAllFlights();          
         }
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
@@ -45,7 +50,7 @@ namespace Airalnes.Views.Controls
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.MainContent.Content = new LoginControl();
+                mainWindow.MainContent.Content = new LoginControl(_userService);
             }
 
         }
@@ -58,11 +63,11 @@ namespace Airalnes.Views.Controls
 
                 if (currentUser.Role == "Worker")
                 {
-                    mainWindow.MainContent.Content = new AirplaneManagementControl();
+                    mainWindow.MainContent.Content = new AirplaneManagementControl(_userService);
                 }
                 else if (currentUser.Role == "User")
                 {
-                    mainWindow.MainContent.Content = new AirplaneUsersControl();
+                    mainWindow.MainContent.Content = new AirplaneUsersControl(_userService);
                 }
             }
         }
@@ -71,14 +76,13 @@ namespace Airalnes.Views.Controls
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.MainContent.Content = new DashboardControl();
+                mainWindow.MainContent.Content = new DashboardControl(_userService);
             }
         }
-
         private void LoadAllFlights()
         {
-            var allFlights = dbHelper.SearchFlights("", "", "", "", "", 0);
-            FlightsDataGrid.ItemsSource = allFlights;
+            var flights = _flightService.SearchFlights("", "", "", "", "", 0);
+            FlightsDataGrid.ItemsSource = flights;
         }
     }
 }

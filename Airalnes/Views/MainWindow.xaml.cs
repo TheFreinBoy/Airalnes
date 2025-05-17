@@ -12,7 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Airalnes.Interfaces;
 using Airalnes.Models;
+using Airalnes.Services;
 using Airalnes.Views.Controls;
 
 namespace Airalnes.Views
@@ -27,7 +29,8 @@ namespace Airalnes.Views
         public MainWindow()
         {
             InitializeComponent();
-            MainContent.Content = new LoginControl();
+            IUserService userService = new UserService();
+            MainContent.Content = new LoginControl(userService);
 
         }
 
