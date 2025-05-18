@@ -8,6 +8,7 @@ using System.IO;
 using Airalnes;
 using System.Windows.Media.Media3D;
 using Airalnes.Models;
+using Airalnes.Validators;
 
 namespace Airalnes.Helpers
 {
@@ -15,6 +16,7 @@ namespace Airalnes.Helpers
     {
         private string _databaseFile = "mydatabase2.db";
         private string _connectionString;
+        private readonly Utilits _utilits;
 
         public DatabaseHelper()
         {
@@ -265,10 +267,10 @@ namespace Airalnes.Helpers
                 using (var command = new SQLiteCommand(query, connection))
                 {
 
-                    command.Parameters.AddWithValue("@from", string.IsNullOrEmpty(from) ? "" : $"%{ExtractAirportCode(from)}%");
-                    command.Parameters.AddWithValue("@to", string.IsNullOrEmpty(to) ? "" : $"%{ExtractAirportCode(to)}%");
-                    command.Parameters.AddWithValue("@departure", string.IsNullOrEmpty(departure) ? "" : ConvertFromIsoDate(departure));
-                    command.Parameters.AddWithValue("@return_date", string.IsNullOrEmpty(arrival) ? "" : ConvertFromIsoDate(arrival));
+                    command.Parameters.AddWithValue("@from", string.IsNullOrEmpty(from) ? "" : $"%{Utilits.ExtractAirportCode(from)}%");
+                    command.Parameters.AddWithValue("@to", string.IsNullOrEmpty(to) ? "" : $"%{Utilits.ExtractAirportCode(to)}%");
+                    command.Parameters.AddWithValue("@departure", string.IsNullOrEmpty(departure) ? "" : Utilits.ConvertFromIsoDate(departure));
+                    command.Parameters.AddWithValue("@return_date", string.IsNullOrEmpty(arrival) ? "" : Utilits.ConvertFromIsoDate(arrival));
                     command.Parameters.AddWithValue("@class", clas);
                     command.Parameters.AddWithValue("@passengers", passengers);
 
@@ -303,26 +305,7 @@ namespace Airalnes.Helpers
 
             return flights;
         }
-        private string ExtractAirportCode(string input)
-        {
-            if (input.Contains("(") && input.Contains(")"))
-            {
-                int start = input.IndexOf('(') + 1;
-                int end = input.IndexOf(')');
-                return input.Substring(start, end - start);
-            }
-            return input;
-        }
-
-        private string ConvertFromIsoDate(string isoDateStr)
-        {
-
-            if (DateTime.TryParse(isoDateStr, out DateTime date))
-            {
-                return date.ToString("dd.MM.yyyy");
-            }
-            return isoDateStr;
-        }      
+              
         public List<Flight> GetUserBookedFlights(int userId)
         {
             var flights = new List<Flight>();
@@ -391,4 +374,5 @@ namespace Airalnes.Helpers
             return new SQLiteConnection(_connectionString);
         }
     }
+    
 }

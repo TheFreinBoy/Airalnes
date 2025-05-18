@@ -155,6 +155,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helpers\Utilits.cs" />
     <Compile Include="Interfaces\IAirplaneService.cs" />
     <Compile Include="Interfaces\IBookingService.cs" />
     <Compile Include="Interfaces\IFlightService.cs" />
