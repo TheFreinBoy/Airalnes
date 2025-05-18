@@ -12,8 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Airalnes.Helpers;
 using Airalnes.Interfaces;
 using Airalnes.Models;
+using Airalnes.Repositories;
 using Airalnes.Services;
 using Airalnes.Views.Controls;
 
@@ -29,7 +31,9 @@ namespace Airalnes.Views
         public MainWindow()
         {
             InitializeComponent();
-            IUserService userService = new UserService();
+            var connectionFactory = new SqliteConnectionFactory("Data Source=mydatabase2.db;Version=3;");
+            var userRepo = new UserRepository(connectionFactory);
+            IUserService userService = new UserService(userRepo);
             MainContent.Content = new LoginControl(userService);
 
         }

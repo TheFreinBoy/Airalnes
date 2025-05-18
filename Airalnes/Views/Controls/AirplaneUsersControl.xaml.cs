@@ -21,6 +21,7 @@ using Airalnes.Helpers;
 using Airalnes.Services;
 using System.Runtime.Remoting.Contexts;
 using Airalnes.Interfaces;
+using Airalnes.Repositories;
 
 namespace Airalnes.Views.Controls
 {
@@ -29,16 +30,21 @@ namespace Airalnes.Views.Controls
     /// </summary>
     public partial class AirplaneUsersControl : UserControl
     {
-        private readonly IAirplaneService airplaneService = new AirplaneService();
-        private readonly IFlightService flightService = new FlightService();
+        private readonly IAirplaneService airplaneService;
+        private readonly IFlightService _flightService;
         private readonly IUserService _userService;
         private BookingContext _context;
         public AirplaneUsersControl(IUserService userService)
         {
             InitializeComponent();
-            LoadAirports();
+            
+            var airplaneRepository = new AirplaneRepository();
+            airplaneService = new AirplaneService(airplaneRepository);
+            var flightRepository = new FlightRepository();
+            _flightService = new FlightService(flightRepository);
             _context = new BookingContext();
             _userService = userService;
+            LoadAirports();
         }
         
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
@@ -97,7 +103,7 @@ namespace Airalnes.Views.Controls
 
             int passengers = int.Parse(PassengersComboBox.Text);
 
-            var results = flightService.SearchFlights(from, to, departure, arrival, flightClass, passengers);
+            var results = _flightService.SearchFlights(from, to, departure, arrival, flightClass, passengers);
             FlightsDataGrid.ItemsSource = results;
             
         }

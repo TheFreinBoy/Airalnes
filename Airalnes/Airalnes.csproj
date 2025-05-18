@@ -155,13 +155,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helpers\SqliteConnectionFactory.cs" />
     <Compile Include="Helpers\Utilits.cs" />
-    <Compile Include="Interfaces\IAirplaneService.cs" />
-    <Compile Include="Interfaces\IBookingService.cs" />
-    <Compile Include="Interfaces\IFlightService.cs" />
-    <Compile Include="Interfaces\IUserService.cs" />
+    <Compile Include="RepoInterfaces\IAirplaneRepository.cs" />
+    <Compile Include="RepoInterfaces\IDbConnectionFactory.cs" />
+    <Compile Include="RepoInterfaces\IFlightRepository.cs" />
+    <Compile Include="RepoInterfaces\IUserRepository.cs" />
+    <Compile Include="Repositories\AirplaneRepository.cs" />
+    <Compile Include="Repositories\FlightRepository.cs" />
+    <Compile Include="ServiceInterfaces\IAirplaneService.cs" />
+    <Compile Include="ServiceInterfaces\IBookingService.cs" />
+    <Compile Include="ServiceInterfaces\IFlightService.cs" />
+    <Compile Include="ServiceInterfaces\IUserService.cs" />
     <Compile Include="Models\Airplane.cs" />
     <Compile Include="Models\BookingContext.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Services\BookingService.cs" />
     <Compile Include="Validators\LoginValidator.cs" />
     <Compile Include="Validators\RegistrationValidator.cs" />

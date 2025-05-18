@@ -21,6 +21,7 @@ using Airalnes.Views.Controls;
 using Airalnes.Models;
 using Airalnes.Services;
 using Airalnes.Interfaces;
+using Airalnes.Repositories;
 
 namespace Airalnes.Views.Controls
 {
@@ -29,17 +30,22 @@ namespace Airalnes.Views.Controls
     /// </summary>
     public partial class AirplaneManagementControl : UserControl
     {
-        private readonly IAirplaneService airplaneService = new AirplaneService();
-        private readonly IFlightService _flightService = new FlightService();
+
+        private readonly IAirplaneService airplaneService;
+        private readonly IFlightService _flightService;
         private readonly IUserService _userService;
         public AirplaneManagementControl(IUserService userService)
         {
-            InitializeComponent();
-            LoadAirplanes();
-            LoadAirports();
+            InitializeComponent();            
+            var airplaneRepository = new AirplaneRepository();
+            airplaneService = new AirplaneService(airplaneRepository);
+            var flightRepository = new FlightRepository();
+            _flightService = new FlightService(flightRepository);
             var nextFlightNumber = _flightService.GetNextAvailableFlightNumber();
             _userService = userService;
             FlightNumberTextBox.Text = nextFlightNumber.ToString();
+            LoadAirplanes();
+            LoadAirports();
         }
         
         private void AirplaneManagementControl_Loaded(object sender, RoutedEventArgs e)
@@ -151,10 +157,9 @@ namespace Airalnes.Views.Controls
                 TimeAR = ArrivalTimePicker.Text
             };
 
-            var service = new FlightService();
             try
             {
-                service.CreateFlight(formData);
+                _flightService.CreateFlight(formData);
             }
             catch
             {

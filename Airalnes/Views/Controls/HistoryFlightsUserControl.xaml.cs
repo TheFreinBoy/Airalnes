@@ -19,6 +19,7 @@ using Airalnes.Helpers;
 using Airalnes.Models;
 using Airalnes.Interfaces;
 using Airalnes.Services;
+using Airalnes.Repositories;
 
 namespace Airalnes.Views.Controls
 {
@@ -33,7 +34,8 @@ namespace Airalnes.Views.Controls
         public HistoryFlightsUserControl(IUserService userService)
         {
             InitializeComponent();
-            _flightService = new FlightService();
+            var flightRepository = new FlightRepository();
+            _flightService = new FlightService(flightRepository);           
             _userService = userService;
             LoadAllFlights();          
         }
