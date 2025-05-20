@@ -9,14 +9,14 @@ using System.Data.SQLite;
 
 namespace Airalnes.Repositories
 {
-    public class AirplaneRepository : IAirplaneRepository
+    public class AirplaneRepository : Repository,IAirplaneRepository
     {
-        private readonly string _connectionString = "Data Source=mydatabase2.db";
+        public AirplaneRepository(IDbConnectionFactory connectionFactory) : base(connectionFactory) { }
         public List<Airplane> GetAirplanes()
         {
             var airplanes = new List<Airplane>();
 
-            using (var connection = new SQLiteConnection(_connectionString))
+            using (var connection = GetConnection())
             {
                 connection.Open();
                 string query = "SELECT id, name, capacity FROM Airplanes;";
@@ -41,7 +41,7 @@ namespace Airalnes.Repositories
         public List<Airport> GetAirports()
         {
             var airports = new List<Airport>();
-            using (var connection = new SQLiteConnection(_connectionString))
+            using (var connection = GetConnection())
             {
                 connection.Open();
                 string query = "SELECT id, name, city, country, iata_code FROM Airports;";

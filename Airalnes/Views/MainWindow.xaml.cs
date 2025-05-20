@@ -34,7 +34,7 @@ namespace Airalnes.Views
             var connectionFactory = new SqliteConnectionFactory("Data Source=mydatabase2.db;Version=3;");
             var userRepo = new UserRepository(connectionFactory);
             IUserService userService = new UserService(userRepo);
-            MainContent.Content = new LoginControl(userService);
+            MainContent.Content = new LoginControl();
 
         }
 

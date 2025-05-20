@@ -24,10 +24,10 @@ namespace Airalnes.Views.Controls
     public partial class DashboardControl : UserControl
     {
         private readonly IUserService _userService;
-        public DashboardControl(IUserService userService)
+        public DashboardControl()
         {
             InitializeComponent();
-            _userService = userService;
+            _userService = App.UserService;
         }
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
         {
@@ -42,7 +42,7 @@ namespace Airalnes.Views.Controls
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.MainContent.Content = new LoginControl(_userService);
+                mainWindow.MainContent.Content = new LoginControl();
             }
 
         }
@@ -55,11 +55,11 @@ namespace Airalnes.Views.Controls
 
                 if (currentUser.Role == "Worker")
                 {
-                    mainWindow.MainContent.Content = new AirplaneManagementControl(_userService);
+                    mainWindow.MainContent.Content = new AirplaneManagementControl();
                 }
                 else if (currentUser.Role == "User")
                 {
-                    mainWindow.MainContent.Content = new AirplaneUsersControl(_userService);
+                    mainWindow.MainContent.Content = new AirplaneUsersControl();
                 }
             }
         }
@@ -72,11 +72,11 @@ namespace Airalnes.Views.Controls
 
                 if (currentUser.Role == "Worker")
                 {
-                    mainWindow.MainContent.Content = new HistoryFlightsUserControl(_userService);
+                    mainWindow.MainContent.Content = new HistoryFlightsUserControl();
                 }
                 else if (currentUser.Role == "User")
                 {
-                    mainWindow.MainContent.Content = new AirplaneUsersControl(_userService);
+                    mainWindow.MainContent.Content = new AirplaneUsersControl();
                 }
             }
         }

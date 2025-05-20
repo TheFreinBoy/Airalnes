@@ -31,12 +31,11 @@ namespace Airalnes.Views.Controls
         private readonly IFlightService _flightService;
         private readonly IUserService _userService;
 
-        public HistoryFlightsUserControl(IUserService userService)
+        public HistoryFlightsUserControl()
         {
             InitializeComponent();
-            var flightRepository = new FlightRepository();
-            _flightService = new FlightService(flightRepository);           
-            _userService = userService;
+            _flightService = App.FlightService;
+            _userService = App.UserService;
             LoadAllFlights();          
         }
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
@@ -52,7 +51,7 @@ namespace Airalnes.Views.Controls
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.MainContent.Content = new LoginControl(_userService);
+                mainWindow.MainContent.Content = new LoginControl();
             }
 
         }
@@ -65,11 +64,11 @@ namespace Airalnes.Views.Controls
 
                 if (currentUser.Role == "Worker")
                 {
-                    mainWindow.MainContent.Content = new AirplaneManagementControl(_userService);
+                    mainWindow.MainContent.Content = new AirplaneManagementControl();
                 }
                 else if (currentUser.Role == "User")
                 {
-                    mainWindow.MainContent.Content = new AirplaneUsersControl(_userService);
+                    mainWindow.MainContent.Content = new AirplaneUsersControl();
                 }
             }
         }
@@ -78,7 +77,7 @@ namespace Airalnes.Views.Controls
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.MainContent.Content = new DashboardControl(_userService);
+                mainWindow.MainContent.Content = new DashboardControl();
             }
         }
         private void LoadAllFlights()

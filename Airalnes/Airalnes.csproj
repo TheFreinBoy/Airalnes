@@ -158,11 +158,14 @@
     <Compile Include="Helpers\SqliteConnectionFactory.cs" />
     <Compile Include="Helpers\Utilits.cs" />
     <Compile Include="RepoInterfaces\IAirplaneRepository.cs" />
+    <Compile Include="RepoInterfaces\IBookingRepository.cs" />
     <Compile Include="RepoInterfaces\IDbConnectionFactory.cs" />
     <Compile Include="RepoInterfaces\IFlightRepository.cs" />
     <Compile Include="RepoInterfaces\IUserRepository.cs" />
     <Compile Include="Repositories\AirplaneRepository.cs" />
+    <Compile Include="Repositories\BookingRepostory.cs" />
     <Compile Include="Repositories\FlightRepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
     <Compile Include="ServiceInterfaces\IAirplaneService.cs" />
     <Compile Include="ServiceInterfaces\IBookingService.cs" />
     <Compile Include="ServiceInterfaces\IFlightService.cs" />

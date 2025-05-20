@@ -27,11 +27,13 @@ namespace Airalnes.Views.Controls
     {
         private BookingContext _context;
         private readonly IUserService _userService;
-        public BookingFlightUserControl(BookingContext context, IUserService userService)
+        private readonly IBookingService _bookingService;
+        public BookingFlightUserControl(BookingContext context)
         {
             InitializeComponent();  
             _context = context;
-            _userService = userService;
+            _userService = App.UserService;
+            _bookingService = App.BookingService;
             LoadFlightData();
         }
         private void LoadFlightData()
@@ -54,7 +56,7 @@ namespace Airalnes.Views.Controls
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.MainContent.Content = new LoginControl(_userService);
+                mainWindow.MainContent.Content = new LoginControl();
             }
 
         }
@@ -67,11 +69,11 @@ namespace Airalnes.Views.Controls
 
                 if (currentUser.Role == "Worker")
                 {
-                    mainWindow.MainContent.Content = new AirplaneManagementControl(_userService);
+                    mainWindow.MainContent.Content = new AirplaneManagementControl();
                 }
                 else if (currentUser.Role == "User")
                 {
-                    mainWindow.MainContent.Content = new AirplaneUsersControl(_userService);
+                    mainWindow.MainContent.Content = new AirplaneUsersControl();
                 }
             }
         }
@@ -80,7 +82,7 @@ namespace Airalnes.Views.Controls
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.MainContent.Content = new DashboardControl(_userService);
+                mainWindow.MainContent.Content = new DashboardControl();
             }
         }
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -159,23 +161,21 @@ namespace Airalnes.Views.Controls
             var mainWindow = Application.Current.MainWindow as MainWindow;
             var selectedFlight = _context.SelectedFlight;
             var currentUser = mainWindow?.CurrentUser;               
+               
+            string name = NameTextBox.Text.Trim();
+            string surname = SurnameTextBox.Text.Trim();
+            string dateOfBirth = DateOfBirthTextBox.Text.Trim();
 
-                var bookingService = new BookingService();
-                string name = NameTextBox.Text.Trim();
-                string surname = SurnameTextBox.Text.Trim();
-                string dateOfBirth = DateOfBirthTextBox.Text.Trim();
-
-                bool success = bookingService.BookFlight(currentUser.Id, selectedFlight.Id, name, surname, dateOfBirth);
-
+            bool success = _bookingService.BookFlight(currentUser.Id, selectedFlight.Id, name, surname, dateOfBirth);
 
             if (success)
-                {
+            {
                     MessageBox.Show("Бронювання успішне!", "Успіх", MessageBoxButton.OK, MessageBoxImage.Information);                   
-                }
-                else
-                {
+            }
+            else
+            {
                     MessageBox.Show("Не вдалося забронювати рейс. Можливо, немає доступних місць.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
-                }          
+            }          
         }
 
     }

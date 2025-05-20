@@ -20,11 +20,11 @@ namespace Airalnes.Views.Controls
         private readonly IUserService _userService;
         private readonly LoginValidator _loginValidator;
 
-        public LoginControl(IUserService userService)
+        public LoginControl()
         {
             InitializeComponent();
-            _userService = userService;
-            _loginValidator = new LoginValidator(userService);
+            _userService = App.UserService;
+            _loginValidator = new LoginValidator(_userService);
         }
 
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
@@ -37,7 +37,7 @@ namespace Airalnes.Views.Controls
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.MainContent.Content = new RegistrationControl(_userService);
+                mainWindow.MainContent.Content = new RegistrationControl();
             }
         }
 
@@ -69,7 +69,7 @@ namespace Airalnes.Views.Controls
             if (mainWindow != null)
             {
                 mainWindow.CurrentUser = result.AuthenticatedUser;
-                mainWindow.MainContent.Content = new DashboardControl(_userService);
+                mainWindow.MainContent.Content = new DashboardControl();
             }
         }
     }

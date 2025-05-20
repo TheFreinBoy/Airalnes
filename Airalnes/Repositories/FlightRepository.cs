@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace Airalnes.Repositories
 {
-    public class FlightRepository : IFlightRepository
+    public class FlightRepository : Repository, IFlightRepository
     {
-        private DatabaseHelper _dbHelper = new DatabaseHelper();
-        
+        public FlightRepository(IDbConnectionFactory connectionFactory) : base(connectionFactory) { }
+
         public void AddFlight(Flight flight)
         {
             Console.WriteLine("Викликало");
-            using (var connection = _dbHelper.GetConnection())
+            using (var connection = GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -50,7 +50,7 @@ namespace Airalnes.Repositories
         {
             var flights = new List<Flight>();
 
-            using (var connection = _dbHelper.GetConnection())
+            using (var connection = GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -103,7 +103,7 @@ namespace Airalnes.Repositories
 
         public int GetNextAvailableFlightNumber()
         {
-            using (var connection = _dbHelper.GetConnection())
+            using (var connection = GetConnection())
             {
                 connection.Open();
                 var command = new SQLiteCommand("SELECT MAX(CAST(flight_number AS INTEGER)) FROM Flights", connection);

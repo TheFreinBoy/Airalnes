@@ -31,18 +31,16 @@ namespace Airalnes.Views.Controls
     public partial class AirplaneManagementControl : UserControl
     {
 
-        private readonly IAirplaneService airplaneService;
+        private readonly IAirplaneService _airplaneService;
         private readonly IFlightService _flightService;
         private readonly IUserService _userService;
-        public AirplaneManagementControl(IUserService userService)
+        public AirplaneManagementControl()
         {
-            InitializeComponent();            
-            var airplaneRepository = new AirplaneRepository();
-            airplaneService = new AirplaneService(airplaneRepository);
-            var flightRepository = new FlightRepository();
-            _flightService = new FlightService(flightRepository);
+            InitializeComponent();
+            _airplaneService = App.AirplaneService;
+            _flightService = App.FlightService;
+            _userService = App.UserService;            
             var nextFlightNumber = _flightService.GetNextAvailableFlightNumber();
-            _userService = userService;
             FlightNumberTextBox.Text = nextFlightNumber.ToString();
             LoadAirplanes();
             LoadAirports();
@@ -78,7 +76,7 @@ namespace Airalnes.Views.Controls
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.MainContent.Content = new LoginControl(_userService);
+                mainWindow.MainContent.Content = new LoginControl();
             }
 
         }
@@ -87,19 +85,19 @@ namespace Airalnes.Views.Controls
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.MainContent.Content = new DashboardControl(_userService);
+                mainWindow.MainContent.Content = new DashboardControl();
             }
 
         }
 
         private void LoadAirplanes()
         {
-            AirplaneComboBox.ItemsSource = airplaneService.GetAllAirplanes();
+            AirplaneComboBox.ItemsSource = _airplaneService.GetAllAirplanes();
         }
 
         private void LoadAirports()
         {
-            var airports = airplaneService.GetAllAirports();
+            var airports = _airplaneService.GetAllAirports();
             FromTextBox.ItemsSource = airports;
             ToTextBox.ItemsSource = airports;
         }
@@ -112,11 +110,11 @@ namespace Airalnes.Views.Controls
 
                 if (currentUser.Role == "Worker")
                 {
-                    mainWindow.MainContent.Content = new HistoryFlightsUserControl(_userService);
+                    mainWindow.MainContent.Content = new HistoryFlightsUserControl();
                 }
                 else if (currentUser.Role == "User")
                 {
-                    mainWindow.MainContent.Content = new AirplaneUsersControl(_userService);
+                    mainWindow.MainContent.Content = new AirplaneUsersControl();
                 }
             }
         }

@@ -30,20 +30,18 @@ namespace Airalnes.Views.Controls
     /// </summary>
     public partial class AirplaneUsersControl : UserControl
     {
-        private readonly IAirplaneService airplaneService;
+        private readonly IAirplaneService _airplaneService;
         private readonly IFlightService _flightService;
         private readonly IUserService _userService;
         private BookingContext _context;
-        public AirplaneUsersControl(IUserService userService)
+        public AirplaneUsersControl()
         {
             InitializeComponent();
-            
-            var airplaneRepository = new AirplaneRepository();
-            airplaneService = new AirplaneService(airplaneRepository);
-            var flightRepository = new FlightRepository();
-            _flightService = new FlightService(flightRepository);
-            _context = new BookingContext();
-            _userService = userService;
+
+            _airplaneService = App.AirplaneService;
+            _flightService = App.FlightService;           
+            _context = new BookingContext();          
+            _userService = App.UserService;
             LoadAirports();
         }
         
@@ -60,7 +58,7 @@ namespace Airalnes.Views.Controls
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.MainContent.Content = new LoginControl(_userService);
+                mainWindow.MainContent.Content = new LoginControl();
             }
 
         }
@@ -69,12 +67,12 @@ namespace Airalnes.Views.Controls
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.MainContent.Content = new DashboardControl(_userService);
+                mainWindow.MainContent.Content = new DashboardControl();
             }
         }
         private void LoadAirports()
         {
-            var airports = airplaneService.GetAllAirports();
+            var airports = _airplaneService.GetAllAirports();
             FromTextBox.ItemsSource = airports;
             ToTextBox.ItemsSource = airports;
         }
@@ -126,7 +124,7 @@ namespace Airalnes.Views.Controls
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.MainContent.Content = new BookingFlightUserControl(_context, _userService);
+                mainWindow.MainContent.Content = new BookingFlightUserControl(_context);
             }
         }
 
