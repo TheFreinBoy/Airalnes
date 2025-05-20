@@ -62,7 +62,7 @@
                         </ListViewItem>
                         <ListViewItem HorizontalAlignment="Center" Margin="0 10">
                             <Button Style="{StaticResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" BorderBrush="{x:Null}"
-                                    Foreground="White" Background="{x:Null}" >
+                                    Foreground="White" Background="{x:Null}" Click="HistoryButton_Click">
                                 <StackPanel Margin="-5">
                                     <materialDesign:PackIcon Kind="Calendar"></materialDesign:PackIcon>
                                 </StackPanel>
@@ -182,19 +182,18 @@
                                     <RowDefinition Height="0.4*"/>
                                 </Grid.RowDefinitions>
                                 <StackPanel  Height="180" Grid.Row="0">
-                                    <DataGrid x:Name="FlightsDataGrid" AutoGenerateColumns="False"   Margin="5" Background="White" CanUserAddRows="False" CanUserDeleteRows="False"
-                                              CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="True" IsReadOnly="True" SelectionMode="Single"
-                                              SelectionUnit="FullRow">
+                                    <DataGrid x:Name="FlightsDataGrid" Margin="5" Background="White" IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="False" 
+                                              EnableColumnVirtualization="True" CellStyle="{DynamicResource DataGridCellStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Style="{DynamicResource DataGridStyle1}">
                                         <DataGrid.Columns>
-                                            <DataGridTextColumn Header="From" Binding="{Binding FromLocation}" />
-                                            <DataGridTextColumn Header="To" Binding="{Binding ToLocation}" />
-                                            <DataGridTextColumn Header="Departure" Binding="{Binding Departure}" />
-                                            <DataGridTextColumn Header="Arrival" Binding="{Binding ReturnDate}" />
-                                            <DataGridTextColumn Header="Class" Binding="{Binding Class}" />
-                                            <DataGridTextColumn Header="Flight No." Binding="{Binding FlightNumber}" />
-                                            <DataGridTextColumn Header="Airplane" Binding="{Binding AirplaneName}" />
-                                            <DataGridTextColumn Header="Time DP" Binding="{Binding TimeDP}" />
-                                            <DataGridTextColumn Header="Time AR" Binding="{Binding TimeAR}" />
+                                            <DataGridTextColumn Header="From" Binding="{Binding FromLocation}" Width="70"/>
+                                            <DataGridTextColumn Header="To" Binding="{Binding ToLocation}" Width="60"/>
+                                            <DataGridTextColumn Header="Departure" Binding="{Binding Departure}" Width="100"/>
+                                            <DataGridTextColumn Header="Arrival" Binding="{Binding ReturnDate}" Width="100"/>
+                                            <DataGridTextColumn Header="Class" Binding="{Binding Class}" Width="80"/>
+                                            <DataGridTextColumn Header="№" Binding="{Binding FlightNumber}" Width="50"/>
+                                            <DataGridTextColumn Header="Airplane" Binding="{Binding AirplaneName}" Width="100"/>
+                                            <DataGridTextColumn Header="Time DP" Binding="{Binding TimeDP}" Width="100"/>
+                                            <DataGridTextColumn Header="Time AR" Binding="{Binding TimeAR}" Width="100"/>
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </StackPanel>

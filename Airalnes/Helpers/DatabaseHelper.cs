@@ -141,7 +141,7 @@ namespace Airalnes.Helpers
                         ('Boeing 777', 280),
                         ('Airbus A350', 314);";
                     ExecuteQuery(insertQuery, connection);
-                    Console.WriteLine("Додано 4 літаки до таблиці Airplanes.");
+                    
                 }
             }
         }
@@ -167,7 +167,7 @@ namespace Airalnes.Helpers
                         ('Frankfurt am Main Airport', 'Frankfurt', 'Germany', 'FRA'),
                         ('Tokyo Haneda Airport', 'Tokyo', 'Japan', 'HND');";
                     ExecuteQuery(insertQuery, connection);
-                    Console.WriteLine("Додано аеропорти до таблиці Airports.");
+                   
                 }
             }
         }

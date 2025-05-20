@@ -169,7 +169,7 @@
                                         <StackPanel >
                                             <TextBlock Text="Cost" HorizontalAlignment="left" Margin="10 5 0 0" />
                                             <TextBox Margin="-5 0 0 0" materialDesign:TextFieldAssist.UnderlineBrush="Transparent"  x:Name="CostTextBox" Style="{StaticResource MaterialDesignTextBox}" Width="110"
-                                                     Height="30" FontSize="16"/>
+                                                     Height="30" FontSize="16" IsReadOnly="True"/>
                                             <materialDesign:PackIcon Kind="Cash" Margin="99 -24 0 0"/>
                                         </StackPanel>
                                     </Border>

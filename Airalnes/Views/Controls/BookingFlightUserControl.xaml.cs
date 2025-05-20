@@ -35,6 +35,7 @@ namespace Airalnes.Views.Controls
             _userService = App.UserService;
             _bookingService = App.BookingService;
             LoadFlightData();
+            LoadCost();
         }
         private void LoadFlightData()
         {
@@ -42,6 +43,10 @@ namespace Airalnes.Views.Controls
             {
                 FlightNumberTextBox.Text = _context.SelectedFlight.FlightNumber;
             }
+        }
+        private void LoadCost()
+        {
+            CostTextBox.Text = "15000";
         }
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
         {
@@ -161,12 +166,14 @@ namespace Airalnes.Views.Controls
             var mainWindow = Application.Current.MainWindow as MainWindow;
             var selectedFlight = _context.SelectedFlight;
             var currentUser = mainWindow?.CurrentUser;               
-               
+
+                
             string name = NameTextBox.Text.Trim();
             string surname = SurnameTextBox.Text.Trim();
             string dateOfBirth = DateOfBirthTextBox.Text.Trim();
 
             bool success = _bookingService.BookFlight(currentUser.Id, selectedFlight.Id, name, surname, dateOfBirth);
+
 
             if (success)
             {

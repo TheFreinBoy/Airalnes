@@ -70,6 +70,23 @@ namespace Airalnes.Views.Controls
                 mainWindow.MainContent.Content = new DashboardControl();
             }
         }
+        private void HistoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            var mainWindow = Application.Current.MainWindow as MainWindow;
+            if (mainWindow != null)
+            {
+                var currentUser = mainWindow?.CurrentUser;
+
+                if (currentUser.Role == "Worker")
+                {
+                    mainWindow.MainContent.Content = new HistoryFlightsUserControl();
+                }
+                else if (currentUser.Role == "User")
+                {
+                    mainWindow.MainContent.Content = new HistoryBookingUserControl();
+                }
+            }
+        }
         private void LoadAirports()
         {
             var airports = _airplaneService.GetAllAirports();

@@ -15,7 +15,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using static MaterialDesignThemes.Wpf.Theme;
 using Airalnes.Views;
 using Airalnes.Views.Controls;
 using Airalnes.Models;
@@ -114,7 +113,7 @@ namespace Airalnes.Views.Controls
                 }
                 else if (currentUser.Role == "User")
                 {
-                    mainWindow.MainContent.Content = new AirplaneUsersControl();
+                    mainWindow.MainContent.Content = new HistoryBookingUserControl();
                 }
             }
         }
