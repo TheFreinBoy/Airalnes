@@ -29,7 +29,7 @@ namespace Airalnes.Views.Controls
             InitializeComponent();
             _userService = App.UserService;
             _bookingService = App.BookingService;
-            LoadAllFlights();
+            LoadUserBookings();
 
         }
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
@@ -74,7 +74,7 @@ namespace Airalnes.Views.Controls
                 mainWindow.MainContent.Content = new DashboardControl();
             }
         }
-        private void LoadAllFlights()
+        private void LoadUserBookings()
         {
             var mainWindow = Application.Current.MainWindow as MainWindow;
             var currentUser = mainWindow?.CurrentUser;

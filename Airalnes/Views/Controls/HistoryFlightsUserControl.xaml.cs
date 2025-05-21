@@ -42,6 +42,20 @@ namespace Airalnes.Views.Controls
         {
             Application.Current.Shutdown();
         }
+        private void DeleteFlight_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            if (button?.DataContext is Flight flightToDelete)
+            {
+                var result = MessageBox.Show($"Are you sure you want to delete?  {flightToDelete.FlightNumber}?", "Підтвердження", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    _flightService.DeleteFlight(flightToDelete.Id);
+                    LoadAllFlights();
+                }
+            }
+        }
         private void UserButton_Click(object sender, RoutedEventArgs e)
         {
             UserPopup.IsOpen = !UserPopup.IsOpen;

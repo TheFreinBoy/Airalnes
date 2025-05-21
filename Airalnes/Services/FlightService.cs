@@ -44,5 +44,10 @@ namespace Airalnes.Services
         {
             return _repository.GetNextAvailableFlightNumber();
         }
+        public void DeleteFlight(int flightId)
+        {
+           _repository.DeleteFlight(flightId);
+        }
+
     }
 }

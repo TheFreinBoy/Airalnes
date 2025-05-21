@@ -12,7 +12,6 @@ namespace Airalnes.Services
 {
     public class BookingService : IBookingService
     {
-        private DatabaseHelper dbHelper = new DatabaseHelper();
         private readonly IBookingRepository _bookingRepository;
         public BookingService(IBookingRepository bookingRepository)
         {

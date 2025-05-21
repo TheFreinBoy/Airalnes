@@ -1,8 +1,10 @@
 ﻿using Airalnes.Interfaces;
 using Airalnes.Models;
 using Airalnes.Services;
+using Airalnes.Validators;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -28,13 +30,16 @@ namespace Airalnes.Views.Controls
         private BookingContext _context;
         private readonly IUserService _userService;
         private readonly IBookingService _bookingService;
+        private readonly BookingValidator _bookingValidator;
         public BookingFlightUserControl(BookingContext context)
         {
             InitializeComponent();  
             _context = context;
             _userService = App.UserService;
             _bookingService = App.BookingService;
-            LoadFlightData();
+            _bookingValidator = new BookingValidator();
+            DateOfBirthTextBox.DisplayDateEnd = DateTime.Today;
+            LoadFlightData();           
             LoadCost();
         }
         private void LoadFlightData()
@@ -141,7 +146,7 @@ namespace Airalnes.Views.Controls
                 textBox.Text = formatted;
                 textBox.SelectionStart = Math.Min(formatted.Length, selectionStart);
             }
-        }
+        }      
         private void Booking_Click(object sender, RoutedEventArgs e)
         {
             NameTextBox.BorderBrush = string.IsNullOrEmpty(NameTextBox.Text) ? Brushes.Red : Brushes.Black;
@@ -153,10 +158,25 @@ namespace Airalnes.Views.Controls
             CostTextBox.BorderBrush = string.IsNullOrEmpty(CostTextBox.Text) ? Brushes.Red : Brushes.Black;
             CVVTextBox.BorderBrush = string.IsNullOrEmpty(CVVTextBox.Text) ? Brushes.Red : Brushes.Black;
             DateCardTextBox.BorderBrush = string.IsNullOrEmpty(DateCardTextBox.Text) ? Brushes.Red : Brushes.Black;
-            if (string.IsNullOrEmpty(NameTextBox.Text) || string.IsNullOrEmpty(DateOfBirthTextBox.Text) || string.IsNullOrEmpty(FlightNumberTextBox.Text) || string.IsNullOrEmpty(SexComboBox.Text)
-                || string.IsNullOrEmpty(SurnameTextBox.Text) || string.IsNullOrEmpty(CardNumberTextBox.Text) || string.IsNullOrEmpty(CostTextBox.Text) || string.IsNullOrEmpty(CVVTextBox.Text)
-                || string.IsNullOrEmpty(DateCardTextBox.Text))
+            var form = new BookingFormModel
             {
+                Name = NameTextBox.Text,
+                Surname = SurnameTextBox.Text,
+                DateOfBirth = DateOfBirthTextBox.Text,
+                Sex = SexComboBox.Text,
+                FlightNumber = FlightNumberTextBox.Text,
+                CardNumber = CardNumberTextBox.Text,
+                Cost = CostTextBox.Text,
+                CVV = CVVTextBox.Text,
+                DateCard = DateCardTextBox.Text
+            };
+
+            var validator = new BookingValidator();
+            var result = validator.Validate(form);
+
+            if (!result.IsValid)
+            {
+                GlobalError.Text = result.ErrorMessage;
                 GlobalError.Visibility = Visibility.Visible;
                 return;
             }
@@ -177,12 +197,8 @@ namespace Airalnes.Views.Controls
 
             if (success)
             {
-                    MessageBox.Show("Бронювання успішне!", "Успіх", MessageBoxButton.OK, MessageBoxImage.Information);                   
-            }
-            else
-            {
-                    MessageBox.Show("Не вдалося забронювати рейс. Можливо, немає доступних місць.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }          
+                    MessageBox.Show("Booking successful!", "Успіх", MessageBoxButton.OK, MessageBoxImage.Information);                   
+            }                    
         }
 
     }

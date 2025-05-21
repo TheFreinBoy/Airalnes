@@ -21,6 +21,7 @@ using Airalnes.Models;
 using Airalnes.Services;
 using Airalnes.Interfaces;
 using Airalnes.Repositories;
+using Mysqlx.Session;
 
 namespace Airalnes.Views.Controls
 {
@@ -117,6 +118,21 @@ namespace Airalnes.Views.Controls
                 }
             }
         }
+        private void ResetForm()
+        {
+            FromTextBox.SelectedItem = null;
+            ToTextBox.SelectedItem = null;
+            DepartureTextBox.Text = string.Empty;
+            ArrivalTextBox.Text = string.Empty;
+            ClassComboBox.SelectedItem = null;
+            AirplaneComboBox.SelectedItem = null;
+            FlightNumberTextBox.Text = _flightService.GetNextAvailableFlightNumber().ToString();
+            DepartureTimePicker.Text = string.Empty;
+            ArrivalTimePicker.Text = string.Empty;
+            GlobalError.Visibility = Visibility.Collapsed;
+           
+        }
+
         private void CreateButton_Click(object sender, RoutedEventArgs e)
         {
             var fromAirport = FromTextBox.SelectedItem as Airport;
@@ -157,11 +173,13 @@ namespace Airalnes.Views.Controls
             try
             {
                 _flightService.CreateFlight(formData);
+                ResetForm();
             }
             catch
             {
                 GlobalError.Visibility = Visibility.Visible;
             }
+            
         }
     }
     }

@@ -79,17 +79,8 @@
                     </ListView>
                 </Grid>
                 <Grid Grid.Column="1">
-                    <TextBlock Text="Worker" FontSize="38"   Margin="0 0 0 390" Foreground="White" FontFamily="pack://application:,,,/Resources/Fonts/#Lady Marmalade"
-                               HorizontalAlignment="Center" VerticalAlignment="Center" >
-                    </TextBlock>
-                    <StackPanel Margin="650 0 0 0">
-                        <Button  Margin="12 12 10 0" Height="30" Width="30" Style="{StaticResource MaterialDesignFloatingActionButton}" ToolTip="Close" Background="{x:Null}" 
-                        x:Name="ButtonExit" Click="ButtonExit_Click" >
-                            <materialDesign:PackIcon Kind="Close" Foreground="White" Height="20" Width="20"/>
-                        </Button>
-                    </StackPanel>
-                    <StackPanel Margin="10 50 10 10">
-                        <Border Margin="10" Padding="10" CornerRadius="25" Height="370">
+                    <StackPanel Margin="0 0 0 0">
+                        <Border Margin="10" Padding="10" CornerRadius="25" Height="430">
                             <Border.Background>
                                 <LinearGradientBrush StartPoint="0.1,0.1" EndPoint="0.9,1">
                                     <GradientStop Color="#007bff" Offset="0"/>
@@ -97,21 +88,41 @@
                                 </LinearGradientBrush>
                             </Border.Background>
                             <StackPanel>
-                                <DataGrid x:Name="FlightsDataGrid" AutoGenerateColumns="False"   Margin="5" Background="White" CanUserAddRows="False" CanUserDeleteRows="False"
-                                          CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="True" IsReadOnly="True" SelectionMode="Single"
-                                          SelectionUnit="FullRow">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="From" Binding="{Binding FromLocation}" />
-                                        <DataGridTextColumn Header="To" Binding="{Binding ToLocation}" />
-                                        <DataGridTextColumn Header="Departure" Binding="{Binding Departure}" />
-                                        <DataGridTextColumn Header="Arrival" Binding="{Binding ReturnDate}" />
-                                        <DataGridTextColumn Header="Class" Binding="{Binding Class}" />
-                                        <DataGridTextColumn Header="Flight No." Binding="{Binding FlightNumber}" />
-                                        <DataGridTextColumn Header="Airplane" Binding="{Binding AirplaneName}" />
-                                        <DataGridTextColumn Header="Time DP" Binding="{Binding TimeDP}" />
-                                        <DataGridTextColumn Header="Time AR" Binding="{Binding TimeAR}" />
-                                    </DataGrid.Columns>
-                                </DataGrid>
+                                <TextBlock Text="All Flights" FontSize="38" Foreground="White" FontFamily="pack://application:,,,/Resources/Fonts/#Lady Marmalade"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                </TextBlock>
+                                <Button  Margin="620 -45 0 0" Height="30" Width="30" Style="{StaticResource MaterialDesignFloatingActionButton}" ToolTip="Close" Background="{x:Null}" 
+                                         x:Name="ButtonExit" Click="ButtonExit_Click" >
+                                    <materialDesign:PackIcon Kind="Close" Foreground="White" Height="20" Width="20"/>
+                                </Button>
+
+                                <StackPanel >
+                                    <DataGrid x:Name="FlightsDataGrid" CellStyle="{DynamicResource DataGridCellStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Style="{DynamicResource DataGridStyle1}" 
+                              IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="False" EnableColumnVirtualization="True" Height="340">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="From" Binding="{Binding FromLocation}" Width="70"/>
+                                            <DataGridTextColumn Header="To" Binding="{Binding ToLocation}" Width="60"/>
+                                            <DataGridTextColumn Header="Departure" Binding="{Binding Departure}" Width="100"/>
+                                            <DataGridTextColumn Header="Arrival" Binding="{Binding ReturnDate}" Width="100"/>
+                                            <DataGridTextColumn Header="Class" Binding="{Binding Class}" Width="80"/>
+                                            <DataGridTextColumn Header="№" Binding="{Binding FlightNumber}" Width="50"/>
+                                            <DataGridTextColumn Header="Airplane" Binding="{Binding AirplaneName}" Width="100"/>
+                                            <DataGridTextColumn Header="Time DP" Binding="{Binding TimeDP}" Width="100"/>
+                                            <DataGridTextColumn Header="Time AR" Binding="{Binding TimeAR}" Width="100"/>
+                                            <DataGridTemplateColumn Header="Op" IsReadOnly="True" Width="90">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <Button Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}"  Click="DeleteFlight_Click">
+                                                                <materialDesign:PackIcon Kind="DeleteOutline" Width="14" Height="14" VerticalAlignment="Center"/>
+                                                            </Button>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </StackPanel>
                             </StackPanel>
                         </Border>
                     </StackPanel>

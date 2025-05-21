@@ -37,7 +37,7 @@ namespace Airalnes.Repositories
                         var count = Convert.ToInt32(checkCmd.ExecuteScalar());
                         if (count > 0)
                         {
-                            MessageBox.Show("Таке бронювання вже існує.");
+                            MessageBox.Show("Such a reservation already exists.");
                             return false;
                         }
                     }
@@ -49,7 +49,7 @@ namespace Airalnes.Repositories
                         int capacity = Convert.ToInt32(checkCapacity.ExecuteScalar());
                         if (capacity <= 0)
                         {
-                            MessageBox.Show("Немає доступних місць.");
+                            MessageBox.Show("There are no available seats.");
                             return false;
                         }
                     }
@@ -76,7 +76,6 @@ namespace Airalnes.Repositories
                         updateCmd.ExecuteNonQuery();
                     }
 
-                    Console.WriteLine("Бронювання успішне.");
                     return true;
                 }
             }

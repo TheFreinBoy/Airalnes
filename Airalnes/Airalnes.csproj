@@ -157,6 +157,7 @@
     </ApplicationDefinition>
     <Compile Include="Helpers\SqliteConnectionFactory.cs" />
     <Compile Include="Helpers\Utilits.cs" />
+    <Compile Include="Models\BookingFormModel.cs" />
     <Compile Include="RepoInterfaces\IAirplaneRepository.cs" />
     <Compile Include="RepoInterfaces\IBookingRepository.cs" />
     <Compile Include="RepoInterfaces\IDbConnectionFactory.cs" />
@@ -174,6 +175,7 @@
     <Compile Include="Models\BookingContext.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Services\BookingService.cs" />
+    <Compile Include="Validators\BookingValidator.cs" />
     <Compile Include="Validators\LoginValidator.cs" />
     <Compile Include="Validators\RegistrationValidator.cs" />
     <Compile Include="Views\Controls\AirplaneManagementControl.xaml.cs">

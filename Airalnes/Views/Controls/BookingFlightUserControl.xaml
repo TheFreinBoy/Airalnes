@@ -79,7 +79,7 @@
                     </ListView>
                 </Grid>
                 <Grid Grid.Column="1">
-                    <TextBlock Text="User" FontSize="38"   Margin="0 0 0 390" Foreground="White" FontFamily="pack://application:,,,/Resources/Fonts/#Lady Marmalade"
+                    <TextBlock Text="Booking" FontSize="38"   Margin="0 0 0 390" Foreground="White" FontFamily="pack://application:,,,/Resources/Fonts/#Lady Marmalade"
                            HorizontalAlignment="Center" VerticalAlignment="Center" >
                     </TextBlock>
                     <StackPanel Margin="10 50 10 10">
@@ -201,8 +201,8 @@
                                          Height="50" Width="50"  Margin="10 -25 0 0" BorderBrush="#000454" Click="Booking_Click">
                                         <materialDesign:PackIcon Kind="Book" />
                                     </Button>
-                                    <TextBlock Foreground="Red" Text="Fields cannot be blank"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18"
-                                               x:Name="GlobalError" Margin="-210 65 0 0" Visibility="Collapsed"/>
+                                    <TextBlock Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"
+                                               x:Name="GlobalError" Margin="-260 65 0 0" Visibility="Collapsed"/>
                                 </StackPanel>
                             </Grid>
                         </Border>

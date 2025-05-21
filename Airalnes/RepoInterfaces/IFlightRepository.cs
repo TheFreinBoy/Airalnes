@@ -12,6 +12,7 @@ namespace Airalnes.RepoInterfaces
         void AddFlight(Flight flight);
         List<Flight> SearchFlights(string from, string to, string departure, string arrival, string flightClass, int passengers);
         int GetNextAvailableFlightNumber();
+        void DeleteFlight(int flightId);
     }
 
 }

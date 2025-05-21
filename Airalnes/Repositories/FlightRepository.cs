@@ -118,6 +118,20 @@ namespace Airalnes.Repositories
                 }
             }
         }
+        public void DeleteFlight(int flightId)
+        {
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                string query = "DELETE FROM Flights WHERE Id = @Id";
+
+                using (var cmd = new SQLiteCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@Id", flightId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 
 }

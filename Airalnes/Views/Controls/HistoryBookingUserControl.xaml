@@ -79,41 +79,41 @@
                     </ListView>
                 </Grid>
                 <Grid Grid.Column="1">
-                    <TextBlock Text="User" FontSize="38"   Margin="0 0 0 390" Foreground="White" FontFamily="pack://application:,,,/Resources/Fonts/#Lady Marmalade"
-                       HorizontalAlignment="Center" VerticalAlignment="Center" >
-                    </TextBlock>
-                    <Border CornerRadius="15" Margin="15 50 15 15 ">
+                    
+                    <Border CornerRadius="15" Margin="10 10 10 10 ">
                         <Border.Background>
                             <LinearGradientBrush StartPoint="0.1,0.1" EndPoint="0.9,1">
                                 <GradientStop Color="#007bff" Offset="0"/>
                                 <GradientStop Color="#70b5ff" Offset="1"/>
                             </LinearGradientBrush>
                         </Border.Background>
-                        <StackPanel Margin="10">
-                            <DataGrid CellStyle="{DynamicResource DataGridCellStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Style="{DynamicResource DataGridStyle1}" 
-                              IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="False" EnableColumnVirtualization="True" x:Name="BookingHistroryDataGrid">
+                        <StackPanel>
+                            <TextBlock Text="Your Bookings" FontSize="38" Foreground="White" FontFamily="pack://application:,,,/Resources/Fonts/#Lady Marmalade"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" >
+                            </TextBlock>
+                            <StackPanel Margin="5">
+                                <DataGrid CellStyle="{DynamicResource DataGridCellStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Style="{DynamicResource DataGridStyle1}" 
+                              IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="False" EnableColumnVirtualization="True" x:Name="BookingHistroryDataGrid" Height="340">
 
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="From" Binding="{Binding FromLocation}" Width="70"/>
-                                    <DataGridTextColumn Header="To" Binding="{Binding ToLocation}" Width="60"/>
-                                    <DataGridTextColumn Header="Departure" Binding="{Binding Departure}" Width="100"/>
-                                    <DataGridTextColumn Header="Arrival" Binding="{Binding ReturnDate}" Width="100"/>
-                                    <DataGridTextColumn Header="Class" Binding="{Binding Class}" Width="80"/>
-                                    <DataGridTextColumn Header="№" Binding="{Binding FlightNumber}" Width="50"/>
-                                    <DataGridTextColumn Header="Airplane" Binding="{Binding AirplaneName}" Width="100"/>
-                                    <DataGridTextColumn Header="Time DP" Binding="{Binding TimeDP}" Width="100"/>
-                                    <DataGridTextColumn Header="Time AR" Binding="{Binding TimeAR}" Width="100"/>
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="From" Binding="{Binding FromLocation}" Width="70"/>
+                                        <DataGridTextColumn Header="To" Binding="{Binding ToLocation}" Width="60"/>
+                                        <DataGridTextColumn Header="Departure" Binding="{Binding Departure}" Width="100"/>
+                                        <DataGridTextColumn Header="Arrival" Binding="{Binding ReturnDate}" Width="100"/>
+                                        <DataGridTextColumn Header="Class" Binding="{Binding Class}" Width="80"/>
+                                        <DataGridTextColumn Header="№" Binding="{Binding FlightNumber}" Width="50"/>
+                                        <DataGridTextColumn Header="Airplane" Binding="{Binding AirplaneName}" Width="100"/>
+                                        <DataGridTextColumn Header="Time DP" Binding="{Binding TimeDP}" Width="100"/>
+                                        <DataGridTextColumn Header="Time AR" Binding="{Binding TimeAR}" Width="100"/>
 
-                                </DataGrid.Columns>
-
-
-                            </DataGrid>
-
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
                         </StackPanel>
                     </Border>
                     <StackPanel Margin="650 0 0 0">
-                        <Button  Margin="12 12 10 0" Height="30" Width="30" Style="{StaticResource MaterialDesignFloatingActionButton}" ToolTip="Close" Background="{x:Null}" 
-            x:Name="ButtonExit" Click="ButtonExit_Click" >
+                        <Button  Margin="5 25 20 0" Height="30" Width="30" Style="{StaticResource MaterialDesignFloatingActionButton}" ToolTip="Close" Background="{x:Null}" 
+                                x:Name="ButtonExit" Click="ButtonExit_Click" >
                             <materialDesign:PackIcon Kind="Close" Foreground="White" Height="20" Width="20"/>
                         </Button>
                     </StackPanel>
