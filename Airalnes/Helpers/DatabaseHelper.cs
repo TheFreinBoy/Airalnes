@@ -9,17 +9,17 @@ using Airalnes;
 using System.Windows.Media.Media3D;
 using Airalnes.Models;
 using Airalnes.Validators;
+using Airalnes.Repositories;
+using Airalnes.RepoInterfaces;
 
 namespace Airalnes.Helpers
 {
-    public class DatabaseHelper
+    public class DatabaseHelper:Repository
     {
         private string _databaseFile = "mydatabase2.db";
-        private string _connectionString;
 
-        public DatabaseHelper()
+        public DatabaseHelper(IDbConnectionFactory connectionFactory) : base(connectionFactory)
         {
-            _connectionString = $"Data Source={_databaseFile};Version=3;";
             InitializeDatabase();
         }
 
@@ -28,10 +28,11 @@ namespace Airalnes.Helpers
             if (!File.Exists(_databaseFile))
             {
                 SQLiteConnection.CreateFile(_databaseFile);
-                using (var connection = new SQLiteConnection(_connectionString))
+                using (var connection = GetConnection())
                 {
                     connection.Open();
                     CreateTables(connection);
+                    Console.WriteLine("xz");
                 }
                 Console.WriteLine("Створюємо БД");
             }
@@ -46,9 +47,12 @@ namespace Airalnes.Helpers
                 CreateFlightsTable(connection);
                 CreateAirportsTable(connection);
                 CreateBookingsTable(connection);
-
+                CreatePayment(connection);
+                CreatePaymentStatus(connection);
+                             
                 SeedAirplanesIfEmpty(connection);
                 SeedAirportsIfEmpty(connection);
+                SeedPaymentStatus(connection);
             }
             catch (Exception ex)
             {
@@ -121,10 +125,55 @@ namespace Airalnes.Helpers
                 name TEXT,
                 surname TEXT,
                 date_of_birth TEXT,
+                payment_status_id INTEGER DEFAULT 2, -- 2 = Unpaid by default,
                 FOREIGN KEY(user_id) REFERENCES Users(id),
-                FOREIGN KEY(flight_id) REFERENCES Flights(id)
+                FOREIGN KEY(flight_id) REFERENCES Flights(id),
+                FOREIGN KEY(payment_status_id) REFERENCES PaymentStatus(id)
             );";
+
             ExecuteQuery(query, connection);
+        }
+
+        private void CreatePayment(SQLiteConnection connection)
+        {
+            string query = @"
+            CREATE TABLE Payment (
+                Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                UserId INTEGER NOT NULL,
+                BookingId INTEGER NOT NULL,
+                PaymentStatusId INTEGER NOT NULL,
+                Amount REAL NOT NULL,
+                PaymentDate DATETIME NOT NULL,
+                FOREIGN KEY (UserId) REFERENCES Users(Id),
+                FOREIGN KEY (BookingId) REFERENCES Booking(Id),
+                FOREIGN KEY (PaymentStatusId) REFERENCES PaymentStatus(Id)
+             );";
+            ExecuteQuery(query, connection);
+        }
+        private void CreatePaymentStatus(SQLiteConnection connection)
+        {
+            string query = @"
+            CREATE TABLE PaymentStatus(
+                Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                StatusName TEXT NOT NULL
+                );";
+            ExecuteQuery(query, connection);
+        }
+        private void SeedPaymentStatus(SQLiteConnection connection)
+        {
+            string checkQuery = "SELECT COUNT(*) FROM PaymentStatus;";
+            using (var command = new SQLiteCommand(checkQuery, connection))
+            {
+                long count = (long)command.ExecuteScalar();
+                if (count == 0)
+                {
+                    string insertQuery = @"
+                    INSERT INTO PaymentStatus (StatusName) VALUES ('Paid'), ('Unpaid');";
+                    ExecuteQuery(insertQuery, connection);
+
+                }
+            }
+
         }
         private void SeedAirplanesIfEmpty(SQLiteConnection connection)
         {

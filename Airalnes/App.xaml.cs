@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using Airalnes.RepoInterfaces;
+using Airalnes.ServiceInterfaces;
 
 namespace Airalnes
 {
@@ -25,6 +26,7 @@ namespace Airalnes
         public static IFlightService FlightService { get; private set; }
         public static IAirplaneService AirplaneService { get; private set; }
         public static IBookingService BookingService { get; private set; }
+        public static IPaymentService PaymentService { get; private set; }
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -44,6 +46,9 @@ namespace Airalnes
              
             var bookingRepository = new BookingRepostory(ConnectionFactory);
             BookingService = new BookingService(bookingRepository);
+
+            var paymentRepository = new PaymentRepository(ConnectionFactory);
+            PaymentService = new PaymentService(paymentRepository);
         }
 
     }

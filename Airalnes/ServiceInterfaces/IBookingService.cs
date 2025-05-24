@@ -9,7 +9,8 @@ namespace Airalnes.Interfaces
 {
     public interface IBookingService
     {
-        bool BookFlight(int userId, int flightId, string name, string surname, string dateOfBirth);
-        List<Flight> GetUserBookings(int userId);
+        int BookFlight(int userId, int flightId, string name, string surname, string dateOfBirth, int paymentStatusId);
+        List<UserBookingInfo> GetUserBookings(int userId);
+        void UpdatePaymentStatus(int bookingId, int newStatusId);
     }
 }

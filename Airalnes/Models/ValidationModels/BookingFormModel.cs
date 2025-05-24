@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Airalnes.Models
+namespace Airalnes.Models.ValidationModels
 {
     public class BookingFormModel
     {
@@ -13,9 +13,5 @@ namespace Airalnes.Models
         public string DateOfBirth { get; set; }
         public string Sex { get; set; }
         public string FlightNumber { get; set; }
-        public string CardNumber { get; set; }
-        public string Cost { get; set; }
-        public string CVV { get; set; }
-        public string DateCard { get; set; }
     }
 }

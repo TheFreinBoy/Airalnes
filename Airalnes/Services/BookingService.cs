@@ -18,15 +18,19 @@ namespace Airalnes.Services
             _bookingRepository = bookingRepository;
         }
 
-        public bool BookFlight(int userId, int flightId, string name, string surname, string dateOfBirth)
+        public int BookFlight(int userId, int flightId, string name, string surname, string dateOfBirth , int paymentStatusId)
         {
-            return _bookingRepository.BookFlight(userId, flightId, name, surname, dateOfBirth);
+            return _bookingRepository.BookFlight(userId, flightId, name, surname, dateOfBirth, paymentStatusId);
         }
 
 
-        public List<Flight> GetUserBookings(int userId)
+        public List<UserBookingInfo> GetUserBookings(int userId)
         {
             return _bookingRepository.GetUserBookings(userId);
+        }
+        public void UpdatePaymentStatus(int bookingId, int newStatusId)
+        {
+            _bookingRepository.UpdatePaymentStatus(bookingId, newStatusId);
         }
     }
 }

@@ -93,21 +93,26 @@
                             </TextBlock>
                             <StackPanel Margin="5">
                                 <DataGrid CellStyle="{DynamicResource DataGridCellStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Style="{DynamicResource DataGridStyle1}" 
-                              IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="False" EnableColumnVirtualization="True" x:Name="BookingHistroryDataGrid" Height="340">
+                              IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="False" EnableColumnVirtualization="True" x:Name="BookingHistroryDataGrid" Height="310">
 
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Header="From" Binding="{Binding FromLocation}" Width="70"/>
-                                        <DataGridTextColumn Header="To" Binding="{Binding ToLocation}" Width="60"/>
-                                        <DataGridTextColumn Header="Departure" Binding="{Binding Departure}" Width="100"/>
-                                        <DataGridTextColumn Header="Arrival" Binding="{Binding ReturnDate}" Width="100"/>
-                                        <DataGridTextColumn Header="Class" Binding="{Binding Class}" Width="80"/>
-                                        <DataGridTextColumn Header="№" Binding="{Binding FlightNumber}" Width="50"/>
-                                        <DataGridTextColumn Header="Airplane" Binding="{Binding AirplaneName}" Width="100"/>
-                                        <DataGridTextColumn Header="Time DP" Binding="{Binding TimeDP}" Width="100"/>
-                                        <DataGridTextColumn Header="Time AR" Binding="{Binding TimeAR}" Width="100"/>
+                                        <DataGridTextColumn Header="From" Binding="{Binding Flight.FromLocation}" Width="70"/>
+                                        <DataGridTextColumn Header="To" Binding="{Binding Flight.ToLocation}" Width="60"/>
+                                        <DataGridTextColumn Header="Departure" Binding="{Binding Flight.Departure}" Width="100"/>
+                                        <DataGridTextColumn Header="Arrival" Binding="{Binding Flight.ReturnDate}" Width="100"/>
+                                        <DataGridTextColumn Header="Class" Binding="{Binding Flight.Class}" Width="80"/>
+                                        <DataGridTextColumn Header="№" Binding="{Binding Flight.FlightNumber}" Width="50"/>
+                                        <DataGridTextColumn Header="Airplane" Binding="{Binding Flight.AirplaneName}" Width="100"/>
+                                        <DataGridTextColumn Header="Time DP" Binding="{Binding Flight.TimeDP}" Width="100"/>
+                                        <DataGridTextColumn Header="Time AR" Binding="{Binding Flight.TimeAR}" Width="100"/>
+                                        <DataGridTextColumn Header="Status" Binding="{Binding PaymentStatus}" Width="100"/>
 
                                     </DataGrid.Columns>
                                 </DataGrid>
+                                <Button Content="Paid" HorizontalAlignment="Right" Width="100" materialDesign:ButtonAssist.CornerRadius="15" Margin="0 0 10 0"
+                                        Click="PaidButton_Click" Background="#ff1f75">
+                                    
+                                </Button>
                             </StackPanel>
                         </StackPanel>
                     </Border>

@@ -7,7 +7,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0A2E6F73-1C35-4B32-A824-67DFB4170CF8}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>Airalnes</RootNamespace>
     <AssemblyName>Airalnes</AssemblyName>
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
@@ -158,28 +158,40 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helpers\InputFormatter.cs" />
     <Compile Include="Helpers\SqliteConnectionFactory.cs" />
     <Compile Include="Helpers\Utilits.cs" />
-    <Compile Include="Models\BookingFormModel.cs" />
+    <Compile Include="Models\ValidationModels\BookingFormModel.cs" />
+    <Compile Include="Models\Enum\PaymentStatusEnum.cs" />
+    <Compile Include="Models\Payment.cs" />
+    <Compile Include="Models\PaymentStatus.cs" />
+    <Compile Include="Models\UserBookingInfo.cs" />
+    <Compile Include="Models\ValidationModels\PaymentValidationModel.cs" />
     <Compile Include="RepoInterfaces\IAirplaneRepository.cs" />
     <Compile Include="RepoInterfaces\IBookingRepository.cs" />
     <Compile Include="RepoInterfaces\IDbConnectionFactory.cs" />
     <Compile Include="RepoInterfaces\IFlightRepository.cs" />
+    <Compile Include="RepoInterfaces\IPaymentRepository.cs" />
     <Compile Include="RepoInterfaces\IUserRepository.cs" />
     <Compile Include="Repositories\AirplaneRepository.cs" />
     <Compile Include="Repositories\BookingRepostory.cs" />
     <Compile Include="Repositories\FlightRepository.cs" />
+    <Compile Include="Repositories\PaymentRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="ServiceInterfaces\IAirplaneService.cs" />
     <Compile Include="ServiceInterfaces\IBookingService.cs" />
     <Compile Include="ServiceInterfaces\IFlightService.cs" />
+    <Compile Include="ServiceInterfaces\IPaymentService.cs" />
     <Compile Include="ServiceInterfaces\IUserService.cs" />
     <Compile Include="Models\Airplane.cs" />
     <Compile Include="Models\BookingContext.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Services\BookingService.cs" />
+    <Compile Include="Services\FlightCostCalculator.cs" />
+    <Compile Include="Services\PaymentService.cs" />
     <Compile Include="Validators\BookingValidator.cs" />
     <Compile Include="Validators\LoginValidator.cs" />
+    <Compile Include="Validators\PaymentValidator.cs" />
     <Compile Include="Validators\RegistrationValidator.cs" />
     <Compile Include="Views\Controls\AirplaneManagementControl.xaml.cs">
       <DependentUpon>AirplaneManagementControl.xaml</DependentUpon>
@@ -203,6 +215,9 @@
     </Compile>
     <Compile Include="Views\Controls\HistoryFlightsUserControl.xaml.cs">
       <DependentUpon>HistoryFlightsUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\PaymentUserControl.xaml.cs">
+      <DependentUpon>PaymentUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\RegistrationControl.xaml.cs">
       <DependentUpon>RegistrationControl.xaml</DependentUpon>
@@ -233,6 +248,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\HistoryFlightsUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\PaymentUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

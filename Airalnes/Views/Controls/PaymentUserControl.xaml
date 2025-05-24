@@ -1,8 +1,8 @@
-﻿<UserControl x:Class="Airalnes.Views.Controls.BookingFlightUserControl"
+﻿<UserControl x:Class="Airalnes.Views.Controls.PaymentUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Airalnes.Views.Controls"
              mc:Ignorable="d" 
@@ -31,14 +31,14 @@
                         <ListViewItem HorizontalAlignment="Center" Margin="0 15">
                             <Grid>
                                 <Button x:Name="UserButton" Style="{StaticResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left"
-                        BorderBrush="{x:Null}" Foreground="White" Background="{x:Null}" Click="UserButton_Click">
+                    BorderBrush="{x:Null}" Foreground="White" Background="{x:Null}" Click="UserButton_Click">
                                     <StackPanel Margin="-5">
                                         <materialDesign:PackIcon Kind="AccountCircle"/>
                                     </StackPanel>
                                 </Button>
 
                                 <Popup x:Name="UserPopup" Placement="Right" PlacementTarget="{Binding ElementName=UserButton}" 
-                       StaysOpen="False" AllowsTransparency="True" PopupAnimation="Slide" HorizontalOffset="10">
+                   StaysOpen="False" AllowsTransparency="True" PopupAnimation="Slide" HorizontalOffset="10">
                                     <Border Background="#100E17" CornerRadius="8" Padding="10" Effect="{DynamicResource MaterialDesignShadowDepth2}">
                                         <StackPanel>
                                             <Button Style="{StaticResource MaterialDesignFlatButton}" Click="Logout_Click">
@@ -54,7 +54,7 @@
                         </ListViewItem>
                         <ListViewItem HorizontalAlignment="Center" Margin="0 0">
                             <Button Style="{StaticResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" BorderBrush="{x:Null}"
-                     Foreground="White" Background="{x:Null}" x:Name="Airplane" Click="Airplane_Click">
+                 Foreground="White" Background="{x:Null}" x:Name="Airplane" Click="Airplane_Click">
                                 <StackPanel Margin="-5">
                                     <materialDesign:PackIcon Kind="AirplaneMarker"></materialDesign:PackIcon>
                                 </StackPanel>
@@ -62,7 +62,7 @@
                         </ListViewItem>
                         <ListViewItem HorizontalAlignment="Center" Margin="0 10">
                             <Button Style="{StaticResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" BorderBrush="{x:Null}"
-                    Foreground="White" Background="{x:Null}" x:Name="History" Click="HistoryButton_Click">
+                Foreground="White" Background="{x:Null}" x:Name="History" Click="HistoryButton_Click">
                                 <StackPanel Margin="-5">
                                     <materialDesign:PackIcon Kind="Calendar"></materialDesign:PackIcon>
                                 </StackPanel>
@@ -70,7 +70,7 @@
                         </ListViewItem>
                         <ListViewItem HorizontalAlignment="Center" Margin="0">
                             <Button Style="{StaticResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" BorderBrush="{x:Null}"
-                    Foreground="White" Background="{x:Null}">
+                Foreground="White" Background="{x:Null}">
                                 <StackPanel Margin="-5">
                                     <materialDesign:PackIcon Kind="Cog"></materialDesign:PackIcon>
                                 </StackPanel>
@@ -79,8 +79,8 @@
                     </ListView>
                 </Grid>
                 <Grid Grid.Column="1">
-                    <TextBlock Text="Booking" FontSize="38"   Margin="0 0 0 390" Foreground="White" FontFamily="pack://application:,,,/Resources/Fonts/#Lady Marmalade"
-                           HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <TextBlock Text="Payment" FontSize="38"   Margin="0 0 0 390" Foreground="White" FontFamily="pack://application:,,,/Resources/Fonts/#Lady Marmalade"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" >
                     </TextBlock>
                     <StackPanel Margin="10 50 10 10">
                         <Border Margin="5 80 5 5" Padding="10" CornerRadius="25" Height="180" >
@@ -93,7 +93,6 @@
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="1*"/>
-                                    <RowDefinition/>
                                 </Grid.RowDefinitions>
                                 <Grid.Resources>
                                     <Style TargetType="TextBlock">
@@ -109,76 +108,55 @@
                                         <Setter Property="Height" Value="60"/>
                                     </Style>
                                 </Grid.Resources>
-                                
+
                                 <StackPanel Grid.Row="0" Orientation="Horizontal">
                                     <Border Background="White" CornerRadius="10" Width="130" Margin="5 0 0 0">
                                         <StackPanel >
-                                            <TextBlock Text="Flight №" HorizontalAlignment="left" Margin="10 5 0 0" />
-                                            <TextBox Margin="-5 0 0 0" materialDesign:TextFieldAssist.UnderlineBrush="Transparent" x:Name="FlightNumberTextBox" Style="{StaticResource MaterialDesignTextBox}"  Width="110"
+                                            <TextBlock Text="Cost" HorizontalAlignment="left" Margin="10 5 0 0" />
+                                            <TextBox Margin="-5 0 0 0" materialDesign:TextFieldAssist.UnderlineBrush="Transparent"  x:Name="CostTextBox" Style="{StaticResource MaterialDesignTextBox}" Width="110"
                                                      Height="30" FontSize="16" IsReadOnly="True"/>
-                                            <materialDesign:PackIcon Kind="Counter" Margin="99 -24 0 0"></materialDesign:PackIcon>
+                                            <materialDesign:PackIcon Kind="Cash" Margin="99 -24 0 0"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <Border Background="White" CornerRadius="10" Width="200"  Margin="5 0 0 0">
+                                        <StackPanel >
+                                            <TextBlock Text="Card" HorizontalAlignment="left" Margin="10 5 0 0" />
+                                            <TextBox Margin="-5 0 0 0" materialDesign:TextFieldAssist.UnderlineBrush="Transparent" Width="180"  PreviewTextInput="TextBox_PreviewTextInput"
+                                                     TextChanged="CardNumberTextBox_TextChanged" MaxLength="19" x:Name="CardNumberTextBox" Style="{StaticResource MaterialDesignTextBox}" Height="30" FontSize="16"/>
+                                            <materialDesign:PackIcon Kind="CreditCard" Margin="168 -24 0 0"/>
                                         </StackPanel>
                                     </Border>
                                     <Border Background="White" CornerRadius="10" Width="130" Margin="5 0 0 0">
                                         <StackPanel >
-                                            <TextBlock Text="Sex" HorizontalAlignment="left" Margin="10 5 0 0" />
-                                            <ComboBox  Margin="-5 0 0 0" Width="110" Height="30" materialDesign:TextFieldAssist.UnderlineBrush="Transparent" FontSize="16"  x:Name="SexComboBox" >
-                                                <ComboBoxItem>
-                                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                                        <materialDesign:PackIcon Kind="GenderMale" Width="20" Height="20" Margin="0 0 5 0"/>
-                                                        <TextBlock Text="Male" VerticalAlignment="Center"/>
-                                                    </StackPanel>
-                                                </ComboBoxItem>
-                                                <ComboBoxItem>
-                                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                                        <materialDesign:PackIcon Kind="GenderFemale" Width="20" Height="20" Margin="0 0 5 0"/>
-                                                        <TextBlock Text="Female" VerticalAlignment="Center"/>
-                                                    </StackPanel>
-                                                </ComboBoxItem>
-                                            </ComboBox>
-                                            <materialDesign:PackIcon Kind="GenderMaleFemale" Margin="99 -20 0 0"/>
+                                            <TextBlock Text="CVV" HorizontalAlignment="left" Margin="10 5 0 0" />
+                                            <TextBox Margin="-5 0 0 0" materialDesign:TextFieldAssist.UnderlineBrush="Transparent" MaxLength="3" PreviewTextInput="TextBox_PreviewTextInput"
+                                                     x:Name="CVVTextBox" Style="{StaticResource MaterialDesignTextBox}" Width="110" Height="30" FontSize="16"/>
+                                            <materialDesign:PackIcon Kind="CreditCard" Margin="99 -24 0 0"/>
                                         </StackPanel>
                                     </Border>
-                                    <Border Background="White" CornerRadius="10" Width="130" Margin="5 0 0 0">
+                                    <Border Background="White" CornerRadius="10" Width="130"  Margin="5 0 0 0">
                                         <StackPanel >
-                                            <TextBlock Text="Name" HorizontalAlignment="left" Margin="10 5 0 0" />
-                                            <TextBox Margin="-5 0 0 0" materialDesign:TextFieldAssist.UnderlineBrush="Transparent"  x:Name="NameTextBox" Style="{StaticResource MaterialDesignTextBox}" Width="110"
-                                                     Height="30" FontSize="16"/>
-                                            <materialDesign:PackIcon Kind="Account" Margin="99 -24 0 0"/>
+                                            <TextBlock Text="Date Card" HorizontalAlignment="left" Margin="10 5 0 0" />
+                                            <TextBox Margin="-5 0 0 0" materialDesign:TextFieldAssist.UnderlineBrush="Transparent"  MaxLength="5" TextChanged="DateCardTextBox_TextChanged"
+                                                     PreviewTextInput="TextBox_PreviewTextInput" x:Name="DateCardTextBox" Style="{StaticResource MaterialDesignTextBox}" Width="110" Height="30" FontSize="16"/>
+                                            <materialDesign:PackIcon Kind="CreditCard" Margin="99 -24 0 0" />
                                         </StackPanel>
                                     </Border>
-                                    <Border Background="White" CornerRadius="10" Width="130" Margin="5 0 0 0">
-                                        <StackPanel >
-                                            <TextBlock Text="Surname" HorizontalAlignment="left" Margin="10 5 0 0" />
-                                            <TextBox Margin="-5 0 0 0" materialDesign:TextFieldAssist.UnderlineBrush="Transparent" x:Name="SurnameTextBox" Style="{StaticResource MaterialDesignTextBox}" Width="110"
-                                                     Height="30" FontSize="16"/>
-                                            <materialDesign:PackIcon Kind="Account" Margin="99 -24 0 0"/>
-                                        </StackPanel>
-                                    </Border>
-                                    <Border CornerRadius="10" Margin="5 0 0 0" Width="130" Background="White">
-                                        <StackPanel  >
-                                            <TextBlock Text="Date of birth" HorizontalAlignment="left" Margin="10 5 0 0"/>
-                                            <DatePicker x:Name="DateOfBirthTextBox" Height="30" Width="110" FontSize="16" Margin="10 0 10 0"
-                                                    materialDesign:TextFieldAssist.UnderlineBrush="Transparent" Focusable="False"  >
-                                            </DatePicker>
-                                        </StackPanel>
-                                    </Border>
+                                    <Button  Style="{StaticResource MaterialDesignFloatingActionButton}" Background="#000454" Foreground="White" FontFamily="Segoe UI"
+                                             Height="50" Width="50"  Margin="10 0 0 0" BorderBrush="#000454" Click="PayButton_Click">
+                                        <materialDesign:PackIcon Kind="AccountCreditCardOutline" />
+                                    </Button>
                                 </StackPanel>
                                 <StackPanel Grid.Row="1" Orientation="Horizontal">
-                                                                                                                                             
-                                    <Button  Style="{StaticResource MaterialDesignFloatingActionButton}" Background="#000454" Foreground="White" FontFamily="Segoe UI"
-                                         Height="50" Width="50"  Margin="10 -25 0 0" BorderBrush="#000454" Click="Booking_Click">
-                                        <materialDesign:PackIcon Kind="Book" />
-                                    </Button>
                                     <TextBlock Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"
-                                               x:Name="GlobalError" Margin="-260 65 0 0" Visibility="Collapsed"/>
+                                           x:Name="GlobalError" Margin="400 130 0 0" Visibility="Visible"/>
                                 </StackPanel>
                             </Grid>
                         </Border>
                     </StackPanel>
                     <StackPanel Margin="650 0 0 0">
                         <Button  Margin="12 12 10 0" Height="30" Width="30" Style="{StaticResource MaterialDesignFloatingActionButton}" ToolTip="Close" Background="{x:Null}" 
-                x:Name="ButtonExit" Click="ButtonExit_Click" >
+            x:Name="ButtonExit" Click="ButtonExit_Click" >
                             <materialDesign:PackIcon Kind="Close" Foreground="White" Height="20" Width="20"/>
                         </Button>
                     </StackPanel>

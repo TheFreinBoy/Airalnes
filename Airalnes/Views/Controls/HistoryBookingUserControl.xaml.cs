@@ -1,4 +1,6 @@
 ﻿using Airalnes.Interfaces;
+using Airalnes.Models;
+using Airalnes.Models.Enum;
 using Airalnes.Services;
 using System;
 using System.Collections.Generic;
@@ -80,6 +82,32 @@ namespace Airalnes.Views.Controls
             var currentUser = mainWindow?.CurrentUser;
             var bookings = _bookingService.GetUserBookings(currentUser.Id);
             BookingHistroryDataGrid.ItemsSource = bookings;
+        }
+        private void PaidButton_Click(Object sender, RoutedEventArgs e) 
+        {
+            if (BookingHistroryDataGrid.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a booking for payment.", "Увага", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            var selectedBooking = BookingHistroryDataGrid.SelectedItem as UserBookingInfo;
+            
+            if (selectedBooking.PaymentStatusId == PaymentStatusEnum.Paid) 
+            {
+                MessageBox.Show("This booking has already been paid for", "Інформація", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+            
+            if (selectedBooking.PaymentStatusId == PaymentStatusEnum.Unpaid)
+            {
+                var mainWindow = Application.Current.MainWindow as MainWindow;
+                if (mainWindow != null)
+                {
+                    mainWindow.MainContent.Content = new PaymentUserControl(selectedBooking.BookingId);
+                }
+            }
+             
+
         }
     }
 }

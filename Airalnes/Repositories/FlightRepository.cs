@@ -16,7 +16,6 @@ namespace Airalnes.Repositories
 
         public void AddFlight(Flight flight)
         {
-            Console.WriteLine("Викликало");
             using (var connection = GetConnection())
             {
                 connection.Open();

@@ -1,5 +1,7 @@
 ﻿using Airalnes.Interfaces;
 using Airalnes.Models;
+using Airalnes.Models.ValidationModels;
+using Airalnes.ServiceInterfaces;
 using Airalnes.Services;
 using Airalnes.Validators;
 using System;
@@ -31,16 +33,17 @@ namespace Airalnes.Views.Controls
         private readonly IUserService _userService;
         private readonly IBookingService _bookingService;
         private readonly BookingValidator _bookingValidator;
+        private readonly IPaymentService _paymentService;
         public BookingFlightUserControl(BookingContext context)
         {
             InitializeComponent();  
             _context = context;
             _userService = App.UserService;
             _bookingService = App.BookingService;
+            _paymentService = App.PaymentService;
             _bookingValidator = new BookingValidator();
             DateOfBirthTextBox.DisplayDateEnd = DateTime.Today;
-            LoadFlightData();           
-            LoadCost();
+            LoadFlightData();               
         }
         private void LoadFlightData()
         {
@@ -49,10 +52,7 @@ namespace Airalnes.Views.Controls
                 FlightNumberTextBox.Text = _context.SelectedFlight.FlightNumber;
             }
         }
-        private void LoadCost()
-        {
-            CostTextBox.Text = "15000";
-        }
+        
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
@@ -94,81 +94,21 @@ namespace Airalnes.Views.Controls
             {
                 mainWindow.MainContent.Content = new DashboardControl();
             }
-        }
-        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            e.Handled = !Regex.IsMatch(e.Text, @"^\d+$");
-        }
-
-        private void CardNumberTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            var textBox = sender as TextBox;
-            int cursorPosition = textBox.SelectionStart;
-            string text = Regex.Replace(textBox.Text, @"\s+", "");
-
-            if (text.Length > 16)
-                text = text.Substring(0, 16);
-
-            string formatted = string.Join(" ", Regex.Matches(text, @"\d{1,4}")
-                                                   .Cast<Match>()
-                                                   .Select(m => m.Value));
-
-            if (textBox.Text != formatted)
-            {
-                textBox.Text = formatted;
-                textBox.SelectionStart = Math.Min(cursorPosition + (formatted.Length - text.Length), formatted.Length);
-            }
-        }    
-        private void DateCardTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            var textBox = sender as TextBox;
-            string raw = textBox.Text.Replace("/", "");
-            int selectionStart = textBox.SelectionStart;
-
-            if (raw.Length > 4)
-                raw = raw.Substring(0, 4);
-
-            if (raw.Length >= 2)
-            {
-                string monthPart = raw.Substring(0, 2);
-                if (!int.TryParse(monthPart, out int month) || month < 1 || month > 12)
-                {
-                    raw = raw.Substring(0, 1);
-                }
-            }
-
-            string formatted = raw;
-            if (raw.Length >= 3)
-                formatted = raw.Insert(2, "/");
-
-            if (textBox.Text != formatted)
-            {
-                textBox.Text = formatted;
-                textBox.SelectionStart = Math.Min(formatted.Length, selectionStart);
-            }
-        }      
+        }     
         private void Booking_Click(object sender, RoutedEventArgs e)
         {
             NameTextBox.BorderBrush = string.IsNullOrEmpty(NameTextBox.Text) ? Brushes.Red : Brushes.Black;
             DateOfBirthTextBox.BorderBrush = string.IsNullOrEmpty(DateOfBirthTextBox.Text) ? Brushes.Red : Brushes.Black;
             FlightNumberTextBox.BorderBrush = string.IsNullOrEmpty(FlightNumberTextBox.Text) ? Brushes.Red : Brushes.Black;
             SurnameTextBox.BorderBrush = string.IsNullOrEmpty(SurnameTextBox.Text) ? Brushes.Red : Brushes.Black;
-            SexComboBox.BorderBrush = string.IsNullOrEmpty(SexComboBox.Text) ? Brushes.Red : Brushes.Black;
-            CardNumberTextBox.BorderBrush = string.IsNullOrEmpty(CardNumberTextBox.Text) ? Brushes.Red : Brushes.Black;
-            CostTextBox.BorderBrush = string.IsNullOrEmpty(CostTextBox.Text) ? Brushes.Red : Brushes.Black;
-            CVVTextBox.BorderBrush = string.IsNullOrEmpty(CVVTextBox.Text) ? Brushes.Red : Brushes.Black;
-            DateCardTextBox.BorderBrush = string.IsNullOrEmpty(DateCardTextBox.Text) ? Brushes.Red : Brushes.Black;
+            SexComboBox.BorderBrush = string.IsNullOrEmpty(SexComboBox.Text) ? Brushes.Red : Brushes.Black;           
             var form = new BookingFormModel
             {
                 Name = NameTextBox.Text,
                 Surname = SurnameTextBox.Text,
                 DateOfBirth = DateOfBirthTextBox.Text,
                 Sex = SexComboBox.Text,
-                FlightNumber = FlightNumberTextBox.Text,
-                CardNumber = CardNumberTextBox.Text,
-                Cost = CostTextBox.Text,
-                CVV = CVVTextBox.Text,
-                DateCard = DateCardTextBox.Text
+                FlightNumber = FlightNumberTextBox.Text,              
             };
 
             var validator = new BookingValidator();
@@ -191,13 +131,19 @@ namespace Airalnes.Views.Controls
             string name = NameTextBox.Text.Trim();
             string surname = SurnameTextBox.Text.Trim();
             string dateOfBirth = DateOfBirthTextBox.Text.Trim();
+            int paymentStatusId = _paymentService.GetPaymentStatuses().First(s => s.StatusName == "Unpaid").Id;
 
-            bool success = _bookingService.BookFlight(currentUser.Id, selectedFlight.Id, name, surname, dateOfBirth);
+            int bookingId = _bookingService.BookFlight(currentUser.Id, selectedFlight.Id, name, surname, dateOfBirth,paymentStatusId);
 
 
-            if (success)
+            if (bookingId > 0)
             {
-                    MessageBox.Show("Booking successful!", "Успіх", MessageBoxButton.OK, MessageBoxImage.Information);                   
+                    MessageBox.Show("Booking successful!", "Успіх", MessageBoxButton.OK, MessageBoxImage.Information);
+               
+                if (mainWindow != null)
+                {
+                    mainWindow.MainContent.Content = new PaymentUserControl(bookingId);
+                }
             }                    
         }
 
