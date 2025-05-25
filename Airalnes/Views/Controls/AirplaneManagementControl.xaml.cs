@@ -50,7 +50,6 @@ namespace Airalnes.Views.Controls
         {
             LoadNextFlightNumber();
         }
-
         private void LoadNextFlightNumber()
         {
             try

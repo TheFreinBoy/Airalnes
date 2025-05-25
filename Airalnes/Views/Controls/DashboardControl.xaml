@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Airalnes"
         mc:Ignorable="d"
-        Height="450" Width="800" Background="{x:Null}">
+        Height="450" Width="1000" Background="{x:Null}">
     <Grid>
         <materialDesign:Card UniformCornerRadius="0" >
             <Grid  Background="#100E17" >
@@ -79,7 +79,7 @@
                     </ListView>
                 </Grid>
                 <Grid Grid.Column="1">
-                    <StackPanel Margin="650 0 0 0">
+                    <StackPanel Margin="850 0 0 0">
                         <Button  Margin="12 12 10 0" Height="30" Width="30" Style="{StaticResource MaterialDesignFloatingActionButton}" ToolTip="Close" Background="{x:Null}" 
                             x:Name="ButtonExit" Click="ButtonExit_Click" >
                             <materialDesign:PackIcon Kind="Close" Foreground="White" Height="20" Width="20"/>

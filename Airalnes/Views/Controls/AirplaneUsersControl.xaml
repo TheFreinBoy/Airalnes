@@ -6,7 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              xmlns:local="clr-namespace:Airalnes"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="1000">
     <Grid>
         <materialDesign:Card UniformCornerRadius="0" >
             <Grid  Background="#100E17" >
@@ -100,7 +100,7 @@
                                 <Setter Property="FontSize" Value="16"/>
                             </Style>
                         </Grid.Resources>
-                        <Border CornerRadius="25" Height="110" Background="White">
+                        <Border CornerRadius="25" Height="60" Background="White">
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel Margin="10 0 0 0 "  Width="140">
                                     <TextBlock Text="From" HorizontalAlignment="left" Margin="10 5 0 0" />
@@ -145,7 +145,7 @@
                                     </ComboBox>
                                     <materialDesign:PackIcon Kind="SeatPassenger" Margin="97 -24 0 0"></materialDesign:PackIcon>
                                 </StackPanel>
-                                <StackPanel Margin="-1175 50 0 0 "  Width="140">
+                                <StackPanel Margin="15 0 0 0 "  Width="140">
                                     <TextBlock Text="Passengers" HorizontalAlignment="left" Margin="10 5 0 0" />
                                     <ComboBox x:Name="PassengersComboBox" Height="30" Width="125" Margin="7 0 10 0" FontSize="14" materialDesign:TextFieldAssist.UnderlineBrush="Transparent" 
                                           MaxDropDownHeight="150">
@@ -157,9 +157,10 @@
 
                                     <materialDesign:PackIcon Kind="HumanHandsdown" Margin="106 -24 0 0" ></materialDesign:PackIcon>
                                 </StackPanel>
-                                <StackPanel Height="40"  Width="90" Margin="-900 65 0 0">
-                                    <Button Background="#ff1f75" Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ButtonAssist.CornerRadius="15" Foreground="White"
-                                        Content="Search" FontFamily="Segoe UI" Click="Search_Click">
+                                <StackPanel Height="40" >
+                                    <Button Background="#ff1f75" Style="{StaticResource MaterialDesignFloatingActionButton}"  Foreground="White"
+                                         FontFamily="Segoe UI" Click="Search_Click" Height="40" Width="40" BorderBrush="#ff1f75">
+                                        <materialDesign:PackIcon Kind="Search"/>
                                     </Button>
                                 </StackPanel>
                                 <TextBlock Text="Fields cannot be blank" Foreground="Red" Margin="-390 72 0 0" x:Name="FieldsError" Visibility="Collapsed"/>
@@ -167,8 +168,8 @@
                             </StackPanel>
                         </Border>
                     </Grid>
-                    <StackPanel Margin="10 160 10 10">
-                        <Border Margin="10" Padding="10" CornerRadius="25" Height="260" >
+                    <StackPanel Margin="10 150 10 10">
+                        <Border Margin="5" Padding="10" CornerRadius="25" Height="275" >
                             
                             <Border.Background>
                                 <LinearGradientBrush StartPoint="0.1,0.1" EndPoint="0.9,1">
@@ -181,10 +182,10 @@
                                     <RowDefinition/>
                                     <RowDefinition Height="0.4*"/>
                                 </Grid.RowDefinitions>
-                                <StackPanel  Height="183" Grid.Row="0">
+                                <StackPanel  Height="190" Grid.Row="0">
                                     <DataGrid x:Name="FlightsDataGrid" Margin="5" IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="False" 
                                               EnableColumnVirtualization="True" CellStyle="{DynamicResource DataGridCellStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Style="{DynamicResource DataGridStyle1}"
-                                              Height="170">
+                                              Height="185">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Header="From" Binding="{Binding FromLocation}" Width="70"/>
                                             <DataGridTextColumn Header="To" Binding="{Binding ToLocation}" Width="60"/>

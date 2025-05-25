@@ -6,7 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Airalnes.Views.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="1000">
     <Grid>
         <materialDesign:Card UniformCornerRadius="0" >
             <Grid  Background="#100E17" >
@@ -92,7 +92,7 @@
                             </Border.Background>
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="3*"/>
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
                                 <Grid.Resources>
@@ -111,7 +111,7 @@
                                 </Grid.Resources>
                                 
                                 <StackPanel Grid.Row="0" Orientation="Horizontal">
-                                    <Border Background="White" CornerRadius="10" Width="130" Margin="5 0 0 0">
+                                    <Border Background="White" CornerRadius="10" Width="130" Margin="15 0 0 0">
                                         <StackPanel >
                                             <TextBlock Text="Flight №" HorizontalAlignment="left" Margin="10 5 0 0" />
                                             <TextBox Margin="-5 0 0 0" materialDesign:TextFieldAssist.UnderlineBrush="Transparent" x:Name="FlightNumberTextBox" Style="{StaticResource MaterialDesignTextBox}"  Width="110"
@@ -119,7 +119,7 @@
                                             <materialDesign:PackIcon Kind="Counter" Margin="99 -24 0 0"></materialDesign:PackIcon>
                                         </StackPanel>
                                     </Border>
-                                    <Border Background="White" CornerRadius="10" Width="130" Margin="5 0 0 0">
+                                    <Border Background="White" CornerRadius="10" Width="130" Margin="15 0 0 0">
                                         <StackPanel >
                                             <TextBlock Text="Sex" HorizontalAlignment="left" Margin="10 5 0 0" />
                                             <ComboBox  Margin="-5 0 0 0" Width="110" Height="30" materialDesign:TextFieldAssist.UnderlineBrush="Transparent" FontSize="16"  x:Name="SexComboBox" >
@@ -139,7 +139,7 @@
                                             <materialDesign:PackIcon Kind="GenderMaleFemale" Margin="99 -20 0 0"/>
                                         </StackPanel>
                                     </Border>
-                                    <Border Background="White" CornerRadius="10" Width="130" Margin="5 0 0 0">
+                                    <Border Background="White" CornerRadius="10" Width="130" Margin="15 0 0 0">
                                         <StackPanel >
                                             <TextBlock Text="Name" HorizontalAlignment="left" Margin="10 5 0 0" />
                                             <TextBox Margin="-5 0 0 0" materialDesign:TextFieldAssist.UnderlineBrush="Transparent"  x:Name="NameTextBox" Style="{StaticResource MaterialDesignTextBox}" Width="110"
@@ -147,7 +147,7 @@
                                             <materialDesign:PackIcon Kind="Account" Margin="99 -24 0 0"/>
                                         </StackPanel>
                                     </Border>
-                                    <Border Background="White" CornerRadius="10" Width="130" Margin="5 0 0 0">
+                                    <Border Background="White" CornerRadius="10" Width="130" Margin="15 0 0 0">
                                         <StackPanel >
                                             <TextBlock Text="Surname" HorizontalAlignment="left" Margin="10 5 0 0" />
                                             <TextBox Margin="-5 0 0 0" materialDesign:TextFieldAssist.UnderlineBrush="Transparent" x:Name="SurnameTextBox" Style="{StaticResource MaterialDesignTextBox}" Width="110"
@@ -155,23 +155,23 @@
                                             <materialDesign:PackIcon Kind="Account" Margin="99 -24 0 0"/>
                                         </StackPanel>
                                     </Border>
-                                    <Border CornerRadius="10" Margin="5 0 0 0" Width="130" Background="White">
+                                    <Border CornerRadius="10" Margin="15 0 0 0" Width="130" Background="White">
                                         <StackPanel  >
                                             <TextBlock Text="Date of birth" HorizontalAlignment="left" Margin="10 5 0 0"/>
                                             <DatePicker x:Name="DateOfBirthTextBox" Height="30" Width="110" FontSize="16" Margin="10 0 10 0"
                                                     materialDesign:TextFieldAssist.UnderlineBrush="Transparent" Focusable="False"  >
                                             </DatePicker>
                                         </StackPanel>
+                                        
                                     </Border>
-                                </StackPanel>
-                                <StackPanel Grid.Row="1" Orientation="Horizontal">
-                                                                                                                                             
                                     <Button  Style="{StaticResource MaterialDesignFloatingActionButton}" Background="#000454" Foreground="White" FontFamily="Segoe UI"
-                                         Height="50" Width="50"  Margin="10 -25 0 0" BorderBrush="#000454" Click="Booking_Click">
+                                             Height="60" Width="60"  Margin="25 0 0 0" BorderBrush="#000454" Click="Booking_Click">
                                         <materialDesign:PackIcon Kind="Book" />
                                     </Button>
+                                </StackPanel>
+                                <StackPanel Grid.Row="1" Orientation="Horizontal">
                                     <TextBlock Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"
-                                               x:Name="GlobalError" Margin="-260 65 0 0" Visibility="Collapsed"/>
+                                               x:Name="GlobalError" Margin="400 0 0 0" Visibility="Collapsed"/>
                                 </StackPanel>
                             </Grid>
                         </Border>

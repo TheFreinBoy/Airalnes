@@ -6,7 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Airalnes.Views.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="1000">
     <Grid>
         <materialDesign:Card UniformCornerRadius="0" >
             <Grid  Background="#100E17" >
@@ -83,7 +83,7 @@
                        HorizontalAlignment="Center" VerticalAlignment="Center" >
                     </TextBlock>
                     <StackPanel Margin="10 50 10 10">
-                        <Border Margin="5 80 5 5" Padding="10" CornerRadius="25" Height="180" >
+                        <Border Margin="10 85 10 0" Padding="10" CornerRadius="25" Height="150" >
                             <Border.Background>
                                 <LinearGradientBrush StartPoint="0.1,0.1" EndPoint="0.9,1">
                                     <GradientStop Color="#007bff" Offset="0"/>
@@ -110,7 +110,7 @@
                                 </Grid.Resources>
 
                                 <StackPanel Grid.Row="0" Orientation="Horizontal">
-                                    <Border Background="White" CornerRadius="10" Width="130" Margin="5 0 0 0">
+                                    <Border Background="White" CornerRadius="10" Width="130" Margin="15 0 0 0">
                                         <StackPanel >
                                             <TextBlock Text="Cost" HorizontalAlignment="left" Margin="10 5 0 0" />
                                             <TextBox Margin="-5 0 0 0" materialDesign:TextFieldAssist.UnderlineBrush="Transparent"  x:Name="CostTextBox" Style="{StaticResource MaterialDesignTextBox}" Width="110"
@@ -118,7 +118,7 @@
                                             <materialDesign:PackIcon Kind="Cash" Margin="99 -24 0 0"/>
                                         </StackPanel>
                                     </Border>
-                                    <Border Background="White" CornerRadius="10" Width="200"  Margin="5 0 0 0">
+                                    <Border Background="White" CornerRadius="10" Width="200"  Margin="15 0 0 0">
                                         <StackPanel >
                                             <TextBlock Text="Card" HorizontalAlignment="left" Margin="10 5 0 0" />
                                             <TextBox Margin="-5 0 0 0" materialDesign:TextFieldAssist.UnderlineBrush="Transparent" Width="180"  PreviewTextInput="TextBox_PreviewTextInput"
@@ -126,7 +126,7 @@
                                             <materialDesign:PackIcon Kind="CreditCard" Margin="168 -24 0 0"/>
                                         </StackPanel>
                                     </Border>
-                                    <Border Background="White" CornerRadius="10" Width="130" Margin="5 0 0 0">
+                                    <Border Background="White" CornerRadius="10" Width="130" Margin="15 0 0 0">
                                         <StackPanel >
                                             <TextBlock Text="CVV" HorizontalAlignment="left" Margin="10 5 0 0" />
                                             <TextBox Margin="-5 0 0 0" materialDesign:TextFieldAssist.UnderlineBrush="Transparent" MaxLength="3" PreviewTextInput="TextBox_PreviewTextInput"
@@ -134,7 +134,7 @@
                                             <materialDesign:PackIcon Kind="CreditCard" Margin="99 -24 0 0"/>
                                         </StackPanel>
                                     </Border>
-                                    <Border Background="White" CornerRadius="10" Width="130"  Margin="5 0 0 0">
+                                    <Border Background="White" CornerRadius="10" Width="130"  Margin="15 0 0 0">
                                         <StackPanel >
                                             <TextBlock Text="Date Card" HorizontalAlignment="left" Margin="10 5 0 0" />
                                             <TextBox Margin="-5 0 0 0" materialDesign:TextFieldAssist.UnderlineBrush="Transparent"  MaxLength="5" TextChanged="DateCardTextBox_TextChanged"
@@ -143,7 +143,7 @@
                                         </StackPanel>
                                     </Border>
                                     <Button  Style="{StaticResource MaterialDesignFloatingActionButton}" Background="#000454" Foreground="White" FontFamily="Segoe UI"
-                                             Height="50" Width="50"  Margin="10 0 0 0" BorderBrush="#000454" Click="PayButton_Click">
+                                             Height="60" Width="60"  Margin="30 0 0 0" BorderBrush="#000454" Click="PayButton_Click">
                                         <materialDesign:PackIcon Kind="AccountCreditCardOutline" />
                                     </Button>
                                 </StackPanel>
@@ -154,7 +154,7 @@
                             </Grid>
                         </Border>
                     </StackPanel>
-                    <StackPanel Margin="650 0 0 0">
+                    <StackPanel Margin="850 0 0 0">
                         <Button  Margin="12 12 10 0" Height="30" Width="30" Style="{StaticResource MaterialDesignFloatingActionButton}" ToolTip="Close" Background="{x:Null}" 
             x:Name="ButtonExit" Click="ButtonExit_Click" >
                             <materialDesign:PackIcon Kind="Close" Foreground="White" Height="20" Width="20"/>

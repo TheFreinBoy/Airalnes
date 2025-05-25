@@ -15,12 +15,12 @@ namespace Airalnes.Services
 
         private static readonly Dictionary<string, double> InternationalDestinations = new Dictionary<string, double>
         {
-            { "LHR", 17000 }, // London
-            { "CDG", 19000 }, // Paris
-            { "JFK", 25000 }, // New York
-            { "DXB", 21000 }, // Dubai
-            { "FRA", 16000 }, // Frankfurt
-            { "HND", 28000 }  // Tokyo
+            { "LHR", 15000 }, // London
+            { "CDG", 17000 }, // Paris
+            { "JFK", 23000 }, // New York
+            { "DXB", 19000 }, // Dubai
+            { "FRA", 15000 }, // Frankfurt
+            { "HND", 25000 }  // Tokyo
         };
 
         public static double Calculate(string from, string to)
