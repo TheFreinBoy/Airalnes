@@ -36,7 +36,7 @@
             </StackPanel>
             <StackPanel Width="450">
                 <StackPanel Margin="40 40">
-                    <TextBlock Text="Login" Margin="20" Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="pack://application:,,,/Resources/Fonts/#Lady Marmalade"/>
+                    <TextBlock Text="Login" Margin="20 20 70 20" Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="pack://application:,,,/Resources/Fonts/#Lady Marmalade"/>
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <materialDesign:PackIcon  Kind="User" Width="25" Height="25" Foreground="White" />
                         <TextBox Margin="10 0" materialDesign:HintAssist.Hint="Enter username" Width="250" Background="#100E17" Foreground="White" BorderBrush="White"
@@ -57,13 +57,13 @@
                         <TextBlock  Text="Fields cannot be blank" 
                                     Foreground="Red" TextAlignment="Center" Margin="0 0 0 10" />
                     </StackPanel>
-                    <StackPanel Margin="10" HorizontalAlignment="Center" Width="300" Orientation="Horizontal">
+                    <StackPanel Margin="0 10 40 10" HorizontalAlignment="Center" Orientation="Horizontal">
                         <Button Width="100" Height="40" Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonAssist.CornerRadius="15" BorderThickness="2"
                                 BorderBrush="#a300f5" Background="#a300f5" Foreground="white" ToolTip="Login" Content="Login" Margin="100 0 0 0" Name="LoginButton" 
                                 Click="LoginButton_Click">
                         </Button>
                         <StackPanel Width="100">
-                            <Button Margin="0 0 0 0"  Height="40" Width="100" Content="Registration" Foreground="white" FontSize="11"
+                            <Button Height="40" Width="100" Content="Registration" Foreground="white" FontSize="11"
                                     Background="{x:Null}" BorderBrush="{x:Null}"  Template="{StaticResource NoEffectButtonTemplate}" Click="Registration_Click">
 
                             </Button>
@@ -75,7 +75,7 @@
                 </StackPanel>
 
             </StackPanel>
-            <StackPanel >
+            <StackPanel Width="100">
                 <Button  Margin="50 15 10 0" Height="30" Width="30" Style="{StaticResource MaterialDesignFloatingActionButton}" ToolTip="Close" Background="{x:Null}" 
                      x:Name="ButtonExit" Click="ButtonExit_Click" >
                     <materialDesign:PackIcon Kind="Close" Foreground="White" Height="20" Width="20"/>

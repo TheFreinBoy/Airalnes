@@ -16,8 +16,8 @@
                 </Grid.ColumnDefinitions>
                 <Grid.Resources>
                     <Style TargetType="materialDesign:PackIcon">
-                        <Setter Property="Width" Value="30"/>
-                        <Setter Property="Height" Value="30"/>
+                        <Setter Property="Width" Value="35"/>
+                        <Setter Property="Height" Value="35"/>
                     </Style>
                 </Grid.Resources>
                 <Grid Grid.Column="0">
@@ -27,18 +27,18 @@
                             <GradientStop Color="#ea1cfc" Offset="1"/>
                         </LinearGradientBrush>
                     </Grid.Background>
-                    <ListView Margin="0 15">
-                        <ListViewItem HorizontalAlignment="Center" Margin="0 15">
+                    <ListView >
+                        <ListViewItem HorizontalAlignment="Center" Margin="0 14">
                             <Grid>
                                 <Button x:Name="UserButton" Style="{StaticResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left"
-                        BorderBrush="{x:Null}" Foreground="White" Background="{x:Null}" Click="UserButton_Click">
+   BorderBrush="{x:Null}" Foreground="White" Background="{x:Null}" Click="UserButton_Click" Height="100">
                                     <StackPanel Margin="-5">
                                         <materialDesign:PackIcon Kind="AccountCircle"/>
                                     </StackPanel>
                                 </Button>
 
                                 <Popup x:Name="UserPopup" Placement="Right" PlacementTarget="{Binding ElementName=UserButton}" 
-                       StaysOpen="False" AllowsTransparency="True" PopupAnimation="Slide" HorizontalOffset="10">
+  StaysOpen="False" AllowsTransparency="True" PopupAnimation="Slide" HorizontalOffset="10">
                                     <Border Background="#100E17" CornerRadius="8" Padding="10" Effect="{DynamicResource MaterialDesignShadowDepth2}">
                                         <StackPanel>
                                             <Button Style="{StaticResource MaterialDesignFlatButton}" Click="Logout_Click">
@@ -52,27 +52,19 @@
                                 </Popup>
                             </Grid>
                         </ListViewItem>
-                        <ListViewItem HorizontalAlignment="Center" Margin="0 0">
+                        <ListViewItem HorizontalAlignment="Center">
                             <Button Style="{StaticResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" BorderBrush="{x:Null}"
-                     Foreground="White" Background="{x:Null}" x:Name="Airplane" Click="Airplane_Click">
+Foreground="White" Background="{x:Null}" x:Name="Airplane" Click="Airplane_Click" Height="100" >
                                 <StackPanel Margin="-5">
                                     <materialDesign:PackIcon Kind="AirplaneMarker"></materialDesign:PackIcon>
                                 </StackPanel>
                             </Button>
                         </ListViewItem>
-                        <ListViewItem HorizontalAlignment="Center" Margin="0 10">
+                        <ListViewItem HorizontalAlignment="Center" Margin="0 11">
                             <Button Style="{StaticResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" BorderBrush="{x:Null}"
-                    Foreground="White" Background="{x:Null}" x:Name="History" Click="HistoryButton_Click">
+                   Foreground="White" Background="{x:Null}" Click="HistoryButton_Click" Height="100">
                                 <StackPanel Margin="-5">
                                     <materialDesign:PackIcon Kind="Calendar"></materialDesign:PackIcon>
-                                </StackPanel>
-                            </Button>
-                        </ListViewItem>
-                        <ListViewItem HorizontalAlignment="Center" Margin="0">
-                            <Button Style="{StaticResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" BorderBrush="{x:Null}"
-                    Foreground="White" Background="{x:Null}">
-                                <StackPanel Margin="-5">
-                                    <materialDesign:PackIcon Kind="Cog"></materialDesign:PackIcon>
                                 </StackPanel>
                             </Button>
                         </ListViewItem>
