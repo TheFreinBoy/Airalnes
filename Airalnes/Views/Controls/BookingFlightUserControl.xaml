@@ -168,7 +168,7 @@ Foreground="White" Background="{x:Null}" x:Name="Airplane" Click="Airplane_Click
                             </Grid>
                         </Border>
                     </StackPanel>
-                    <StackPanel Margin="650 0 0 0">
+                    <StackPanel Margin="850 0 0 0">
                         <Button  Margin="12 12 10 0" Height="30" Width="30" Style="{StaticResource MaterialDesignFloatingActionButton}" ToolTip="Close" Background="{x:Null}" 
                 x:Name="ButtonExit" Click="ButtonExit_Click" >
                             <materialDesign:PackIcon Kind="Close" Foreground="White" Height="20" Width="20"/>

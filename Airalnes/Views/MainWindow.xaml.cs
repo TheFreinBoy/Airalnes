@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Airalnes.Database;
 using Airalnes.Helpers;
 using Airalnes.Interfaces;
 using Airalnes.Models;
@@ -32,7 +33,9 @@ namespace Airalnes.Views
         {
             InitializeComponent();
             var connectionFactory = new SqliteConnectionFactory("Data Source=mydatabase2.db;Version=3;");
-            new DatabaseHelper(connectionFactory);
+            new DataBaseInitializer(connectionFactory);
+            var dbSeeder = new DatabaseSeeder(connectionFactory);
+            dbSeeder.Seed();
 
             var userRepo = new UserRepository(connectionFactory);
             IUserService userService = new UserService(userRepo);

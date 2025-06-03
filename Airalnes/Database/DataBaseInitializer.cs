@@ -12,13 +12,13 @@ using Airalnes.Validators;
 using Airalnes.Repositories;
 using Airalnes.RepoInterfaces;
 
-namespace Airalnes.Helpers
+namespace Airalnes.Database
 {
-    public class DatabaseHelper:Repository
+    public class DataBaseInitializer:Repository
     {
         private string _databaseFile = "mydatabase2.db";
 
-        public DatabaseHelper(IDbConnectionFactory connectionFactory) : base(connectionFactory)
+        public DataBaseInitializer(IDbConnectionFactory connectionFactory) : base(connectionFactory)
         {
             InitializeDatabase();
         }
@@ -32,11 +32,8 @@ namespace Airalnes.Helpers
                 {
                     connection.Open();
                     CreateTables(connection);
-                    Console.WriteLine("xz");
                 }
-                Console.WriteLine("Створюємо БД");
             }
-            Console.WriteLine("База даних вже є");
         }
         private void CreateTables(SQLiteConnection connection)
         {
@@ -48,11 +45,7 @@ namespace Airalnes.Helpers
                 CreateAirportsTable(connection);
                 CreateBookingsTable(connection);
                 CreatePayment(connection);
-                CreatePaymentStatus(connection);
-                             
-                SeedAirplanesIfEmpty(connection);
-                SeedAirportsIfEmpty(connection);
-                SeedPaymentStatus(connection);
+                CreatePaymentStatus(connection);                                           
             }
             catch (Exception ex)
             {
@@ -159,69 +152,7 @@ namespace Airalnes.Helpers
                 );";
             ExecuteQuery(query, connection);
         }
-        private void SeedPaymentStatus(SQLiteConnection connection)
-        {
-            string checkQuery = "SELECT COUNT(*) FROM PaymentStatus;";
-            using (var command = new SQLiteCommand(checkQuery, connection))
-            {
-                long count = (long)command.ExecuteScalar();
-                if (count == 0)
-                {
-                    string insertQuery = @"
-                    INSERT INTO PaymentStatus (StatusName) VALUES ('Paid'), ('Unpaid');";
-                    ExecuteQuery(insertQuery, connection);
-
-                }
-            }
-
-        }
-        private void SeedAirplanesIfEmpty(SQLiteConnection connection)
-        {
-            string checkQuery = "SELECT COUNT(*) FROM Airplanes;";
-            using (var command = new SQLiteCommand(checkQuery, connection))
-            {
-                long count = (long)command.ExecuteScalar();
-                if (count == 0)
-                {
-                    string insertQuery = @"
-                    INSERT INTO Airplanes (name, capacity) VALUES
-                        ('Boeing 737', 160),
-                        ('Airbus A320', 150),
-                        ('Boeing 777', 280),
-                        ('Airbus A350', 314);";
-                    ExecuteQuery(insertQuery, connection);
-                    
-                }
-            }
-        }
-
-        private void SeedAirportsIfEmpty(SQLiteConnection connection)
-        {
-            string checkQuery = "SELECT COUNT(*) FROM Airports;";
-            using (var command = new SQLiteCommand(checkQuery, connection))
-            {
-                long count = (long)command.ExecuteScalar();
-                if (count == 0)
-                {
-                    string insertQuery = @"
-                    INSERT INTO Airports (name, city, country, iata_code) VALUES
-                        ('Boryspil International Airport', 'Kyiv', 'Ukraine', 'KBP'),
-                        ('Lviv Danylo Halytskyi International Airport', 'Lviv', 'Ukraine', 'LWO'),
-                        ('Odesa International Airport', 'Odesa', 'Ukraine', 'ODS'),
-                        ('Kharkiv International Airport', 'Kharkiv', 'Ukraine', 'HRK'),
-                        ('Heathrow Airport', 'London', 'UK', 'LHR'),
-                        ('Charles de Gaulle Airport', 'Paris', 'France', 'CDG'),
-                        ('John F. Kennedy International Airport', 'New York', 'USA', 'JFK'),
-                        ('Dubai International Airport', 'Dubai', 'UAE', 'DXB'),
-                        ('Frankfurt am Main Airport', 'Frankfurt', 'Germany', 'FRA'),
-                        ('Tokyo Haneda Airport', 'Tokyo', 'Japan', 'HND');";
-                    ExecuteQuery(insertQuery, connection);
-                   
-                }
-            }
-        }
-
-
+        
         private void ExecuteQuery(string query, SQLiteConnection connection)
         {
             using (var command = new SQLiteCommand(query, connection))

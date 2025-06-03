@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Airalnes.App" Collapsed="true">
+    <Position X="32" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAQAAAAAAACAwAAAAAgAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Airalnes.Database.DataBaseInitializer" Collapsed="true">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACgAAAAAAAAgAAADAAAAEAAQAAQgAAAAAAEAAAABAA=</HashCode>
+      <FileName>Database\DataBaseInitializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Airalnes.Database.DatabaseSeeder" Collapsed="true">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAIAAAAAAAAEAAAEAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Database\DatabaseSeeder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Airalnes.Helpers.InputFormatter" Collapsed="true">
+    <Position X="32" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAEAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\InputFormatter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Airalnes.Helpers.SqliteConnectionFactory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\SqliteConnectionFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Airalnes.Helpers.Utilits" Collapsed="true">
+    <Position X="32" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Helpers\Utilits.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Airalnes.Models.Airplane" Collapsed="true">
+    <Position X="23.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAEAAAAAAQCAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Airplane.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Airalnes.Models.Airport" Collapsed="true">
+    <Position X="30.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAMAAAAAAQAAAIAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Airport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Airalnes.Models.BookingContext" Collapsed="true">
+    <Position X="23.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\BookingContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Airalnes.Models.Flight" Collapsed="true">
+    <Position X="23.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DAACAAAAAAAAAAAAEAoAAAAigCAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Flight.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Airalnes.Models.Payment" Collapsed="true">
+    <Position X="28.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAEIAAAAAAAAAAiCAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Payment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Airalnes.Models.PaymentStatus" Collapsed="true">
+    <Position X="32" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\PaymentStatus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Airalnes.Models.User" Collapsed="true">
+    <Position X="26.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAAEQAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Airalnes.Models.UserBookingInfo" Collapsed="true">
+    <Position X="28.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAEAACAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Models\UserBookingInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Airalnes.Models.ValidationModels.BookingFormModel" Collapsed="true">
+    <Position X="26.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAQABCAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ValidationModels\BookingFormModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Airalnes.Models.ValidationModels.PaymentValidationModel" Collapsed="true">
+    <Position X="25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIIAAAAAAAAAA=</HashCode>
+      <FileName>Models\ValidationModels\PaymentValidationModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Airalnes.Properties.Resources" Collapsed="true">
+    <Position X="32" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Airalnes.Properties.Settings" Collapsed="true">
+    <Position X="23.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Airalnes.Repositories.AirplaneRepository" Collapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\AirplaneRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Airalnes.Repositories.BookingRepostory" Collapsed="true">
+    <Position X="14" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Repositories\BookingRepostory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Airalnes.Repositories.FlightRepository" Collapsed="true">
+    <Position X="16.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAKAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\FlightRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Airalnes.Repositories.PaymentRepository" Collapsed="true">
+    <Position X="18.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\PaymentRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Airalnes.Repositories.Repository" Collapsed="true">
+    <Position X="14" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Repositories\Repository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Airalnes.Repositories.UserRepository" Collapsed="true">
+    <Position X="20.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAEAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Repositories\UserRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Airalnes.Services.AirplaneService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgBAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Services\AirplaneService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Airalnes.Services.BookingService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="28.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAABAAAAAAAAAIAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Services\BookingService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Airalnes.Services.FlightCostCalculator" Collapsed="true">
+    <Position X="25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAACAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Services\FlightCostCalculator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Airalnes.Services.FlightService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAABAAAAAAAAAAAAKgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\FlightService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Airalnes.Services.PaymentService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="30.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\PaymentService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Airalnes.Services.UserService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="30.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAACBAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\UserService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Airalnes.Validators.BookingValidator" Collapsed="true">
+    <Position X="30.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Validators\BookingValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Airalnes.Validators.LoginValidator" Collapsed="true">
+    <Position X="25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Validators\LoginValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Airalnes.Validators.PaymentValidator" Collapsed="true">
+    <Position X="26.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Validators\PaymentValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Airalnes.Validators.RegistrationValidator" Collapsed="true">
+    <Position X="30.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Validators\RegistrationValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Airalnes.Views.Controls.AirplaneManagementControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AADIAAAAAAgAAAABAAggEAAAEAAAAAAAIAAEEAAAAAQ=</HashCode>
+      <FileName>Views\Controls\AirplaneManagementControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Airalnes.Views.Controls.AirplaneUsersControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="28.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AADIAAAAAAAABAABAAAgEAAAEACAAAAAAAAEAAIAAAQ=</HashCode>
+      <FileName>Views\Controls\AirplaneUsersControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Airalnes.Views.Controls.BookingFlightUserControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgIAAAAAAAABAACAAAgEABAEAAABAAAAAAEAAAAIAQ=</HashCode>
+      <FileName>Views\Controls\BookingFlightUserControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Airalnes.Views.Controls.DashboardControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="32" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAgEAAAEAAAAAAAAAAEAAAAAAQ=</HashCode>
+      <FileName>Views\Controls\DashboardControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Airalnes.Views.Controls.HistoryBookingUserControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="28.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAEAAAAAAAACAAAgEAAAEAAAAAAAAAAEAIAAAAQ=</HashCode>
+      <FileName>Views\Controls\HistoryBookingUserControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Airalnes.Views.Controls.HistoryFlightsUserControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="30.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABIAAAAAACIAAAAAAAgEAAAEAAAAAAAAAAEAAAAAAQ=</HashCode>
+      <FileName>Views\Controls\HistoryFlightsUserControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Airalnes.Views.Controls.LoginControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="23.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAQAAAACEAAAAAAQ=</HashCode>
+      <FileName>Views\Controls\LoginControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Airalnes.Views.Controls.PaymentUserControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="23.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgIBAAAAAAAAEACAAQgEBBAkAAAAAAAAAAEAAAAAAQ=</HashCode>
+      <FileName>Views\Controls\PaymentUserControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Airalnes.Views.Controls.RegistrationControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="28.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAgAAAAAAAAAAAEAAAAIAQ=</HashCode>
+      <FileName>Views\Controls\RegistrationControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Airalnes.Views.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAICAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="Airalnes.RepoInterfaces.IAirplaneRepository" Collapsed="true">
+    <Position X="23.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>RepoInterfaces\IAirplaneRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Airalnes.RepoInterfaces.IBookingRepository" Collapsed="true">
+    <Position X="26.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>RepoInterfaces\IBookingRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Airalnes.RepoInterfaces.IDbConnectionFactory" Collapsed="true">
+    <Position X="30.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RepoInterfaces\IDbConnectionFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Airalnes.RepoInterfaces.IFlightRepository" Collapsed="true">
+    <Position X="32" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAKAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>RepoInterfaces\IFlightRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Airalnes.RepoInterfaces.IPaymentRepository" Collapsed="true">
+    <Position X="25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RepoInterfaces\IPaymentRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Airalnes.RepoInterfaces.IUserRepository" Collapsed="true">
+    <Position X="28.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAEAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>RepoInterfaces\IUserRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Airalnes.Interfaces.IAirplaneService" Collapsed="true">
+    <Position X="25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>ServiceInterfaces\IAirplaneService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Airalnes.Interfaces.IBookingService" Collapsed="true">
+    <Position X="28.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>ServiceInterfaces\IBookingService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Airalnes.Interfaces.IFlightService" Collapsed="true">
+    <Position X="23.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAKgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ServiceInterfaces\IFlightService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Airalnes.Interfaces.IUserService" Collapsed="true">
+    <Position X="30.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAACBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ServiceInterfaces\IUserService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Airalnes.ServiceInterfaces.IPaymentService" Collapsed="true">
+    <Position X="26.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ServiceInterfaces\IPaymentService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Airalnes.Models.Enum.PaymentStatusEnum" Collapsed="true">
+    <Position X="23.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Enum\PaymentStatusEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
