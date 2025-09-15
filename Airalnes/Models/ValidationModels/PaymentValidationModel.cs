@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Airalnes.Models.ValidationModels
+{
+    internal class PaymentValidationModel
+    {
+        public string CardNumber { get; set; }
+        public string CVV { get; set; }
+        public string DateCard { get; set; }
+    }
+}
